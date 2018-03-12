@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certs:/etc/letsencrypt
+      - certs-data:/data/letsencrypt
+  api:
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+     - logs:/home/me/restful-api
+    env_file: .env
+volumes:
+  db-data:
+  certs:
+  certs-data:
+  logs:

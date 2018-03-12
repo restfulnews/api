@@ -1,0 +1,6 @@
+apps:
+  - script: ./src/index.js
+    instances: 4
+    exec_mode: cluster
+    log_file: "/home/me/restful-api/api.log"
+    merge_logs: true

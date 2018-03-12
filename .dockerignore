@@ -1,0 +1,7 @@
+deploy.sh
+.gitignore
+.gitlab-ci.yml
+README.md
+nginx
+node_modules
+Dockerfile

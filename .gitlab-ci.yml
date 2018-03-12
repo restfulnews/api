@@ -1,0 +1,45 @@
+# GITLAB CI FOR AUTO DEPLOYMENT
+#
+# - Production  => git push origin stable
+# - Systems Integration Testing => git push origin master
+# - User Acceptance Testing => git push origin uat
+#
+# See Restful-API deployment pipeline docs for our Git naming convention
+#
+# ADD "KEY_PRODUCTION" in Gitlab repo settings under "Pipelines" tab
+# After that edit the UAT, SIT and prod hosts below
+
+variables:
+    DEPLOY_SCRIPT: >
+        cd /srv/restful-api; git reset --hard; git pull; ./deploy.sh
+    HOST_PRODUCTION: "ubuntu@ec2-52-63-9-173.ap-southeast-2.compute.amazonaws.com"
+    HOST_SIT: "ubuntu@ec2-52-62-46-79.ap-southeast-2.compute.amazonaws.com"
+    HOST_UAT: "ubuntu@ec2-52-62-247-220.ap-southeast-2.compute.amazonaws.com"
+
+# DEPLOY SCRIPTS
+deploy_production:
+    script:
+        - echo "$KEY_PRODUCTION" > "key_prod.pem"
+        - chmod 600 key_prod.pem
+        - ssh -o StrictHostKeyChecking=no -i key_prod.pem $HOST_PRODUCTION "$DEPLOY_SCRIPT"
+        - rm key_prod.pem
+    only:
+        - stable
+
+deploy_sit:
+    script:
+        - echo "$KEY_PRODUCTION" > "key_stag.pem"
+        - chmod 600 key_stag.pem
+        - ssh -o StrictHostKeyChecking=no -i key_stag.pem $HOST_SIT "$DEPLOY_SCRIPT"
+        - rm key_stag.pem
+    only:
+        - master
+
+deploy_uat:
+    script:
+        - echo "$KEY_PRODUCTION" > "key_stag.pem"
+        - chmod 600 key_stag.pem
+        - ssh -o StrictHostKeyChecking=no -i key_stag.pem $HOST_UAT "$DEPLOY_SCRIPT"
+        - rm key_stag.pem
+    only:
+        - staging

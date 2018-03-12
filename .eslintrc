@@ -1,0 +1,16 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": 2,
+    "no-tabs": 0,
+    "indent": ["error", "tab"],
+    "no-prototype-builtins": 0,
+    "no-unused-expressions": [1, {
+      "allowTernary": true
+    }]
+  },
+  "extends": "airbnb-base"
+}

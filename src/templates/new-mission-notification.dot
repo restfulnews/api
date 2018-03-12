@@ -1,0 +1,10 @@
+<b>Mission Details</b>
+<br><b>Mission link:</b> {{=it.config.appUri}}/missions/{{=it.missionObject.id}}
+<br><b>User:</b> {{=it.user.name}}
+<br><b>Email:</b> {{=it.user.email}}
+<br><b>Description:</b> {{=it.missionObject.description}}
+<br><b>Type:</b> {{=it.missionObject.type}}
+<br><b>Required Date:</b> {{=it.missionObject.requiredDate}}
+<br><b>Location:</b> {{=it.missionObject.location}}
+<br><b>Lng/Lat:</b> ({{=it.missionObject.location.longitude}}, {{=it.missionObject.location.latitude}})
+<br>

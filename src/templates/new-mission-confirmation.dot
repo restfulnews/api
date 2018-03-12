@@ -1,0 +1,16 @@
+Hi {{=it.user.name}},
+<br>
+<br>Thanks for choosing to fly with us.
+<br>
+<br>We’ll be in touch shortly to confirm your flight and explain the next steps.
+<br>
+<br>In the meantime, here’s a summary of your request.
+<br>
+<h4>Flight details:</h4>
+<b>Date:</b> {{=it.missionObject.requiredDate}}
+<br><b>Location (Lng/Lat):</b> ({{=it.missionObject.location.longitude}}, {{=it.missionObject.location.latitude}})
+<br><b>Description:</b> {{=it.missionObject.description}}
+<br>
+<br><a href="{{=it.config.appUri}}/missions">Click here</a> to track your flights, contact your pilot and access your photos/videos, anytime.
+<br>
+<br>Dev Team
