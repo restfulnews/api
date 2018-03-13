@@ -13,54 +13,6 @@ const { Schema } = mongoose;
 const roles = ['user', 'admin'];
 
 const userSchema = new Schema({
-	contactNumber: String,
-	altContactNumber: String,
-	onboardingSignUp: Boolean,
-	organisation: { type: ObjectId, ref: 'Organisation' },
-	approvedPilot: Boolean,
-	location: {
-		address: {
-			streetNumber: String,
-			streetName: String,
-			city: String,
-			state: String,
-			country: String,
-		},
-		coordinates: {
-			longitude: Number,
-			latitude: Number,
-		},
-	},
-	userProfile: {
-		website: String,
-		bio: String,
-	},
-	pilotProfile: {
-		workRadius: Number, // Willing to travel
-		dob: Date, // Date of birth
-		mobilePhone: String,
-		telePhone: String, // TODO: Should not be camel case, telephone is one word
-		abn: String, // Australian Business Number (Do we need this?)
-		rpl: { // Remote Pilot License
-			num: String,
-			certLink: String,
-		},
-		aroc: { // Aviation Radio Operator Cert
-			num: String,
-			certLink: String,
-		},
-		reoc: { // RPA Operator Certificate
-			num: String,
-			certLink: String,
-		},
-		myDrone: String, // Drone Details
-		hasInsurance: Boolean,
-		hasDrone: Boolean,
-		canHire: {
-			type: Boolean,
-			default: false,
-		},
-	},
 	email: {
 		type: String,
 		match: /^\S+@\S+\.\S+$/,
@@ -90,8 +42,6 @@ const userSchema = new Schema({
 		trim: true,
 		required: true,
 	},
-	googleId: String,
-	googleDomain: String,
 	role: {
 		type: String,
 		enum: roles,
@@ -100,10 +50,6 @@ const userSchema = new Schema({
 	picture: {
 		type: String,
 		trim: true,
-	},
-	cover: {
-		type: String,
-		default: '/images/headerimage.jpg',
 	},
 }, {
 	timestamps: true,
@@ -159,15 +105,11 @@ userSchema.pre('save', function addSlug(next) {
 userSchema.methods = {
 	view(full) {
 		const view = {};
-		let fields = ['id', 'name', 'picture', 'cover', 'organisation', 'role', 'approvedPilot'];
-
+		let fields = ['id', 'name', 'picture', 'role'];
 		if (full) {
-			fields = [...fields, 'email', 'username', 'location',
-				'userProfile', 'pilotProfile', 'createdAt'];
+			fields = [...fields, 'email', 'username', 'createdAt'];
 		}
-
 		fields.forEach((field) => { view[field] = this[field]; });
-
 		return view;
 	},
 
