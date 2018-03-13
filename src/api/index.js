@@ -3,8 +3,8 @@ const user = require('./user');
 const auth = require('./auth');
 const config = require('../config');
 const debug = require('./debug');
-const enquire = require('./enquire');
-const entity = require('./entity');
+const company = require('./company');
+const news = require('./news');
 const { errorHandler } = require('../utils');
 
 const router = new Router();
@@ -34,7 +34,8 @@ const router = new Router();
  */
 router.use('/users', user);
 router.use('/auth', auth);
-router.use('/entity', entity);
+router.use('/company', company);
+router.use('/news', news);
 router.use('/enquire', enquire);
 router.use('/debug', debug);
 router.get('/', (req, res) =>
