@@ -12,7 +12,7 @@
 
 variables:
   DEPLOY_SCRIPT: >
-    cd /srv/platform-api; git fetch; git checkout $CI_COMMIT_REF_NAME; git reset --hard origin/$CI_COMMIT_REF_NAME; ./deploy.sh
+    cd /srv/restful-news; git fetch; git checkout $CI_COMMIT_REF_NAME; git reset --hard origin/$CI_COMMIT_REF_NAME; ./deploy.sh
 
 # DEPLOY SCRIPTS
 .deploy: &deploy

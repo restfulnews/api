@@ -19,25 +19,7 @@ const Entity = require('./model');
 exports.create = ({ body, user }, res, next) => {
 	return Entity.create(body)
 		.then(entity => entity.view(true))
-		.then((entity) => {
-			res.status(201).json(entity);
-			notifier(`A new entity has been added ${config.appUri}/entity/${entity.id}`, {
-				subject: 'A new entity has been added.',
-				body: templates['new-entity-notification']({
-					config, user, entityObject, entity,
-				}),
-			});
-			// TODO: Send entity confirmation from front-page tests
-			if (!entity.pilotID) {
-				sendMail({
-					to: `${user.name} <${user.email}>`,
-					subject: 'entity confirmation',
-					content: templates['new-entity-confirmation']({
-						config, user, entityObject, entity,
-					}),
-				});
-			}
-		})
+		.then((entity) => res.status(201).json(entity))
 		.catch(next);
 };
 

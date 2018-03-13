@@ -1,5 +1,5 @@
 #!/bin/bash
-# Init Platform API server
+# Init Restful API server
 
 ${BASH_SOURCE%/*}/add-cron-jobs.sh
 ${BASH_SOURCE%/*}/install-fail2ban.sh
