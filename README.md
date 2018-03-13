@@ -1,5 +1,5 @@
 # RESTful News API
-This API enables developers obtain news about companies. The source of the news will be from several sources including The Guardian, USA Tday etc.  
+This API enables users to retrieve a list of news articles about Australian companies. The source of the news will be from several sources including The Guardian, USA Tday etc.  
 
 The API conventions we aim to use are outlined in the [OpenAPI specifications](https://swagger.io/docs/specification/about/).
 
