@@ -17,14 +17,14 @@ const router = new Router();
 	*/
 
 /**
- * @api {post} /entity Create Entity
+ * @api {post} /news Create News
  * @apiName CreateEntity
- * @apiGroup Entity
+ * @apiGroup News
  * @apiPerEntity user
  * @apiParam {String} access_token user access token.
- * @apiSuccess {Object} Entity Entity's data.
+ * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Entity not found.
+ * @apiError 404 News not found.
  * @apiError 401 user access only.
  */
 router.post(
@@ -34,13 +34,13 @@ router.post(
 );
 
 /**
- * @api {get} /entity Retrieve entity
+ * @api {get} /news Retrieve news
  * @apiName RetrieveEntity
- * @apiGroup Entity
+ * @apiGroup News
  * @apiPerEntity admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
- * @apiSuccess {Object[]} entity List of entity.
+ * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
  */
@@ -52,14 +52,14 @@ router.get(
 );
 
 /**
- * @api {get} /entity/:id Retrieve Entity
+ * @api {get} /news/:id Retrieve News
  * @apiName RetrieveEntity
- * @apiGroup Entity
+ * @apiGroup News
  * @apiPerEntity user
  * @apiParam {String} access_token user access token.
- * @apiSuccess {Object} Entity Entity's data.
+ * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Entity not found.
+ * @apiError 404 News not found.
  * @apiError 401 user access only.
  */
 router.get(
@@ -69,14 +69,14 @@ router.get(
 );
 
 /**
- * @api {put} /entity/:id Update Entity
+ * @api {put} /news/:id Update News
  * @apiName UpdateEntity
- * @apiGroup Entity
+ * @apiGroup News
  * @apiPerEntity user
  * @apiParam {String} access_token user access token.
- * @apiSuccess {Object} Entity Entity's data.
+ * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Entity not found.
+ * @apiError 404 News not found.
  * @apiError 401 user access only.
  */
 router.put(
@@ -86,13 +86,13 @@ router.put(
 );
 
 /**
- * @api {delete} /entity/:id Delete Entity
+ * @api {delete} /news/:id Delete News
  * @apiName DeleteEntity
- * @apiGroup Entity
+ * @apiGroup News
  * @apiPerEntity admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
- * @apiError 404 Entity not found.
+ * @apiError 404 News not found.
  * @apiError 401 admin access only.
  */
 router.delete(
