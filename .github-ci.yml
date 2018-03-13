@@ -1,0 +1,45 @@
+# GITHUB CI FOR AUTO DEPLOYMENT
+#
+# - Production  => git push origin stable
+# - Systems Integration Testing => git push origin master
+# - User Acceptance Testing => git push origin uat
+#
+# See Birdi deployment pipeline docs for our Git naming convention
+#
+# 1. ADD "SSH_KEY" in Github repo settings under "Pipelines" tab
+# 2. Add the host address for the different stages in the same window.
+#   HOST_PROD, HOST_UAT, HOST_SIT
+
+variables:
+  DEPLOY_SCRIPT: >
+    cd /srv/platform-api; git fetch; git checkout $CI_COMMIT_REF_NAME; git reset --hard origin/$CI_COMMIT_REF_NAME; ./deploy.sh
+
+# DEPLOY SCRIPTS
+.deploy: &deploy
+  script:
+    - echo "$SSH_KEY" > "ssh_key.pem"
+    - chmod 600 ssh_key.pem
+    - ssh -o StrictHostKeyChecking=no -i ssh_key.pem $HOST "$DEPLOY_SCRIPT"
+    - rm ssh_key.pem
+
+deploy_prod:
+  <<: *deploy
+  variables:
+    HOST: $HOST_PROD
+  only:
+    - master
+
+deploy_uat:
+  <<: *deploy
+  variables:
+    HOST: $HOST_UAT
+  only:
+    - /^uat-.*$/
+
+deploy_sit:
+  <<: *deploy
+  variables:
+    HOST: $HOST_SIT
+  only:
+    - master
+    - /^sit-.*$/
