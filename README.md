@@ -7,7 +7,7 @@ Express based RESTful News API for starter applications. This API's skeleton is 
 
 ## Contributing
 
-Help keep the code clean be following our contribution Protocols ([CONTRIBUTING.md](CONTRIBUTING.md)).
+Help keep the code clean be following our contribution protocols ([CONTRIBUTING.md](CONTRIBUTING.md)).
 
 Versioning will be managed by the product manager(s) and can be found in the changelog ([CHANGELOG.md](CHANGELOG.md))
 
