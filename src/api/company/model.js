@@ -3,18 +3,18 @@ const shortid = require('shortid');
 
 const { ObjectId } = mongoose.Schema;
 
-const entitySchema = new mongoose.Schema({
-	title: String
+const companySchema = new mongoose.Schema({
+	name: String
 }, { timestamps: true });
 
-entitySchema.methods = {
+companySchema.methods = {
 	view(full) {
 		const view = {
 			// simple view
 			id: this.id,
 			createdAt: this.createdAt,
 			updatedAt: this.updatedAt,
-			title: this.title,
+			name: this.name,
 		};
 		return full ? {
 			// full view += simple view
@@ -23,6 +23,6 @@ entitySchema.methods = {
 	},
 };
 
-const Entity = mongoose.model('Entity', entitySchema);
+const Company = mongoose.model('Company', companySchema);
 
-module.exports = Entity;
+module.exports = Company;
