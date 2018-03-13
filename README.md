@@ -1,15 +1,15 @@
 # RESTful News API
 This service enables the customers to receive news from all over the world. The source of the news will be from several sources including The Guardian, USA Tday etc.  
 
-The API conventions we aim to use are outlined in the ![OpenAPI specifications](https://swagger.io/docs/specification/about/).
+The API conventions we aim to use are outlined in the [OpenAPI specifications](https://swagger.io/docs/specification/about/).
 
 Express based RESTful News API for starter applications. This API's skeleton is based on the Yo RESTful API, with an updated authentication routine (without being transpiled using babel). 
 
 ## Contributing
 
-Help keep the code clean be following our contribution Protocols (![CONTRIBUTING.md](/CONTRIBUTING.md)).
+Help keep the code clean be following our contribution Protocols ([CONTRIBUTING.md](CONTRIBUTING.md)).
 
-Versioning will be managed by the product manager and can be found in the changelog (![CHANGELOG.md](/CHANGELOG.md))
+Versioning will be managed by the product manager and can be found in the changelog ([CHANGELOG.md](CHANGELOG.md))
 
 ## Requirements
 - MongoDB
