@@ -4,7 +4,10 @@ const shortid = require('shortid');
 const { ObjectId } = mongoose.Schema;
 
 const companySchema = new mongoose.Schema({
-	name: String
+	name: String,
+	ticker: String,
+	market: String, // Market Index (e.g. ASX, NASDAQ etc)
+
 }, { timestamps: true });
 
 companySchema.methods = {
