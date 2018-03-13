@@ -3,18 +3,20 @@ const shortid = require('shortid');
 
 const { ObjectId } = mongoose.Schema;
 
-const entitySchema = new mongoose.Schema({
-	title: String
+const keySchema = new mongoose.Schema({
+	secret: String,
+	user: { type: ObjectId, ref: 'User' }
 }, { timestamps: true });
 
-entitySchema.methods = {
+keySchema.methods = {
 	view(full) {
 		const view = {
 			// simple view
 			id: this.id,
 			createdAt: this.createdAt,
 			updatedAt: this.updatedAt,
-			title: this.title,
+			user: this.user,
+			secret: this.secret,
 		};
 		return full ? {
 			// full view += simple view
@@ -23,6 +25,6 @@ entitySchema.methods = {
 	},
 };
 
-const Entity = mongoose.model('Entity', entitySchema);
+const Key = mongoose.model('Key', keySchema);
 
-module.exports = Entity;
+module.exports = Key;

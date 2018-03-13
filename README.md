@@ -1,5 +1,5 @@
 # RESTful News API
-This service enables the customers to receive news from all over the world. The source of the news will be from several sources including The Guardian, USA Tday etc.  
+This API enables developers obtain news about companies and how likely it's going to affect their share price. The source of the news will be from several sources including The Guardian, USA Tday etc.  
 
 The API conventions we aim to use are outlined in the [OpenAPI specifications](https://swagger.io/docs/specification/about/).
 

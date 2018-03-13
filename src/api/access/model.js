@@ -3,11 +3,11 @@ const shortid = require('shortid');
 
 const { ObjectId } = mongoose.Schema;
 
-const entitySchema = new mongoose.Schema({
+const accessSchema = new mongoose.Schema({
 	title: String
 }, { timestamps: true });
 
-entitySchema.methods = {
+accessSchema.methods = {
 	view(full) {
 		const view = {
 			// simple view
@@ -23,6 +23,6 @@ entitySchema.methods = {
 	},
 };
 
-const Entity = mongoose.model('Entity', entitySchema);
+const Access = mongoose.model('Access', accessSchema);
 
-module.exports = Entity;
+module.exports = Access;
