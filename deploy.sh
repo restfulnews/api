@@ -14,7 +14,7 @@ source .env
 : "${DOMAIN_NAME:?DOMAIN_NAME unset. Exiting.}"
 
 # set name
-DOCKER_TAG="restful-api"
+DOCKER_TAG="restful-news"
 
 # start working folder in repo
 cd /srv/$DOCKER_TAG

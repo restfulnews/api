@@ -171,7 +171,7 @@ exports.updatePasswordWithToken = asyncHandler(async ({ body: { email, code, pas
 	sendMail({
 		to: user.email,
 		subject: 'Your password has been reset',
-		content: 'Your password has been reset. If this wasn’t initiated by you, please contact us at enquires@restful-api.',
+		content: 'Your password has been reset. If this wasn’t initiated by you, please contact us at enquires@restful-news.',
 	});
 });
 

@@ -17,7 +17,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-     - logs:/home/me/restful-api
+     - logs:/home/me/restful-news
     env_file: .env
 volumes:
   db-data:

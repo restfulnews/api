@@ -10,7 +10,7 @@ const router = new Router();
  */
 
 /**
- * @api {post} /messenger/enquire Create an enquiry (enquiry send to enquires@restful-api)
+ * @api {post} /messenger/enquire Create an enquiry (enquiry send to enquires@restful-news)
  * @apiName CreateMessenger
  * @apimessenger Messenger
  * @apiParam email Enquirer's email

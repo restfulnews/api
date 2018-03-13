@@ -24,7 +24,7 @@ RUN chown -R me:me $(npm config get prefix)/lib/node_modules && \
 # Add log directory and set home folder permissions
 # Our npm files are owned by root user
 # TODO: Target only files we need, chowing everything is slow!
-RUN mkdir $HOME/restful-api/ && chown -R me:me $HOME/
+RUN mkdir $HOME/restful-news/ && chown -R me:me $HOME/
 
 # Update work directory and switch to user
 USER me
