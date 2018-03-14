@@ -36,7 +36,6 @@ router.use('/users', user);
 router.use('/auth', auth);
 router.use('/company', company);
 router.use('/news', news);
-router.use('/enquire', enquire);
 router.use('/debug', debug);
 router.get('/', (req, res) =>
 	res.status(200).json({
