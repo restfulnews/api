@@ -103,9 +103,7 @@ This is the entry file of the API. It defines the routes using, along other midd
 
 Here you can put `helpers`, `libraries` and other types of modules which you want to use in your APIs.
 
-# Production
-
-# First time run on AWS Ubuntu 16.04 AMI
+# Running on AWS Ubuntu 16.04 AMI
 1. Clone repo to `/srv/restful-news` (use `~/.ssh/read-key` & `~/.ssh/config` file)
 2. Set environment variables file `.env` (see .env.example)
 2. Run `restful-news/scripts/init.sh` to set up server
