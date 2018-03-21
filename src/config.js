@@ -41,7 +41,7 @@ const baseConfig = {
 	jwtSecret: requireProcessEnv('JWT_SECRET'),
 	googleClientId: requireProcessEnv('GOOGLE_CLIENT_ID'),
 	googleClientSecret: requireProcessEnv('GOOGLE_CLIENT_SECRET'),
-	slackWebhookUrl: 'https://hooks.slack.com/services/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',
+	slackWebhookUrl: requireProcessEnv('SLACK_WEB_HOOK'),
 	mongo: {
 		options: {
 			db: {
