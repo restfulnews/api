@@ -3,9 +3,9 @@ const Guardian = require('guardian-js');
 const md5 = require('md5');
 
 /**
- * RESTful New's Standard News Object
- * ModelRef: News
- * Please structure the news object based on the ModelRef.
+ * Guardian Service
+ * Please structure the news object based on the News Model.
+ * (ie. src/api/news/model.js)
  */
 
 const guardian = (keyword, next) => {
@@ -21,7 +21,7 @@ const guardian = (keyword, next) => {
 				fingerprint: md5(`${result.webTitle}-guardian`),
 				url: result.webUrl,
 				abstract: result.fields.body.replace(/<(?:.|\n)*?>/gm, ''),
-				image: result.fields.thumbnail,
+				thumbnail: result.fields.thumbnail,
 			}));
 			next(processedResults);
 		})
