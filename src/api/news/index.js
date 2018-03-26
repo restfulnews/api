@@ -16,7 +16,7 @@ const router = new Router();
  * @api {get} /news Search for news articles
  * @apiName SearchNews
  * @apiGroup News
- * @apiPerNews admin
+ * @apiPerNews user
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Object[]} news List of news.

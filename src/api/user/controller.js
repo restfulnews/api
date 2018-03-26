@@ -1,4 +1,3 @@
-const notifier = require('../../services/notifier');
 const _ = require('lodash');
 const pino = require('pino')();
 const { success, notFound } = require('../../services/response/');
@@ -46,15 +45,6 @@ exports.create = asyncHandler(async (req, res, next) => {
 			}
 			throw new APIError(500, 'Error creating user', err);
 		});
-	notifier(
-		`${body.name} has signed up.`,
-		{
-			subject: `${body.name} has signed up.`,
-			body: `A new user has signed up.
-			<br><b>Full Name</b>: ${body.name}
-			<br><b>Email</b>: ${body.email}`,
-		},
-	);
 	// Return JWT in next middleware
 	return next();
 }, 'Error creating new user');
@@ -225,7 +215,6 @@ exports.findOrCreateGoogle = async (userData) => {
 	}
 	// No ID || Email
 	const newUser = await User.create(userData);
-	notifier(`${userData.name} has signed up via Google`);
 	return newUser;
 };
 
