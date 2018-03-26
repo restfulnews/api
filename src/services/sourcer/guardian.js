@@ -1,6 +1,4 @@
 const Guardian = require('guardian-js');
-const fecha = require('fecha');
-const { guardianKey } = require('../../config');
 const { abstract, fingerprint } = require('./helper');
 
 /**
@@ -11,13 +9,9 @@ const { abstract, fingerprint } = require('./helper');
 
 const index = async ({
 	topics,
-	/* Defaults parameters:
-	 * start_date = today - 5years
-	 * end_date = today
-	 */
 	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)).toISOString(),
 	end_date = new Date().toISOString(),
-}) => {
+}, apiKey) => {
 	let allResults = [];
 
 	const apiParams = {
@@ -27,7 +21,7 @@ const index = async ({
 		toDate: end_date,
 	};
 
-	const api = new Guardian(guardianKey, false);
+	const api = new Guardian(apiKey, false);
 
 	await api.content.search(topics, apiParams)
 		.then(async (response) => {
