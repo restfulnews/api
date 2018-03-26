@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
-const shortid = require('shortid');
+const mongooseKeywords = require('mongoose-keywords');
 
-const { ObjectId } = mongoose.Schema;
-
-const entitySchema = new mongoose.Schema({
-	title: String
+const newsSchema = new mongoose.Schema({
+	/** fingerprint:
+	 * unqiue hash used to distinguish
+	 * md5(title-<source>)
+	 */
+	fingerprint: String,
+	title: String, // article title
+	abstract: String, // article description
+	url: String, // web url to article
+	thumbnail: String, // url to article image
 }, { timestamps: true });
 
-entitySchema.methods = {
+newsSchema.methods = {
 	view(full) {
 		const view = {
 			// simple view
@@ -19,10 +25,21 @@ entitySchema.methods = {
 		return full ? {
 			// full view += simple view
 			...view,
+			fingerprint: this.fingerprint,
+			abstract: this.abstract,
+			url: this.url,
+			thumbnail: this.thumbnail,
 		} : view;
 	},
 };
 
-const Entity = mongoose.model('Entity', entitySchema);
+newsSchema.plugin(mongooseKeywords, {
+	paths: [
+		'title',
+		'abstract',
+	],
+});
 
-module.exports = Entity;
+const News = mongoose.model('News', newsSchema);
+
+module.exports = News;

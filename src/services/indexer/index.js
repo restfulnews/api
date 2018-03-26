@@ -1,3 +1,7 @@
-const indexer = obj => obj;
+const Guardian = require('./guardian');
 
-export default indexer;
+const indexer = (keyword, next) => {
+	Guardian(keyword, response => next(response));
+};
+
+module.exports = indexer;

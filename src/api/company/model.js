@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 const mongooseKeywords = require('mongoose-keywords');
-const shortid = require('shortid');
-
-const { ObjectId } = mongoose.Schema;
 
 const companySchema = new mongoose.Schema({
 	name: String,
