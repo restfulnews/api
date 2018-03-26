@@ -3,12 +3,12 @@ const Guardian = require('guardian-js');
 const md5 = require('md5');
 
 /**
- * Guardian Service
- * Please structure the news object based on the News Model.
+ * Guardian Sourcer - http://open-platform.theguardian.com
+ * Please structure the news object to compliment our universal news model.
  * (ie. src/api/news/model.js)
  */
 
-const guardian = (keyword, next) => {
+const index = (keyword, next) => {
 	const api = new Guardian(guardianKey, false);
 	api.content.search(keyword, {
 		showFields: ['body', 'thumbnail'],
@@ -16,6 +16,7 @@ const guardian = (keyword, next) => {
 		.then(async (response) => {
 			const responseObject = JSON.parse(response.body);
 			const { results } = responseObject.response;
+			// restructure news list results since to conform with our News Model
 			const processedResults = await results.map(result => ({
 				title: result.webTitle,
 				fingerprint: md5(`${result.webTitle}-guardian`),
@@ -28,4 +29,4 @@ const guardian = (keyword, next) => {
 		.catch(error => next(null));
 };
 
-module.exports = guardian;
+module.exports = index;

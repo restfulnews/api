@@ -3,7 +3,7 @@ const mongooseKeywords = require('mongoose-keywords');
 
 const newsSchema = new mongoose.Schema({
 	/** fingerprint:
-	 * unqiue hash used to distinguish
+	 * unqiue hash used to avoid redundant articles
 	 * md5(title-<source>)
 	 */
 	fingerprint: String,
