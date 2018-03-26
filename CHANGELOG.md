@@ -1,6 +1,10 @@
 # [Changelog](http://keepachangelog.com/)
 All releases will be documented in this file.
 
+## [0.2.1] 2018-04-26 Adding Documentation Skeleton
+- Added searcher service
+- Added guardian service
+
 ## [0.1.1] 2018-03-14 Adding Documentation Skeleton
 - Added README.md
 - Added CONTRIBUTING.md
