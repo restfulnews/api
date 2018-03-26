@@ -11,7 +11,8 @@ const newsSchema = new mongoose.Schema({
 	abstract: String, // article description
 	url: String, // web url to article
 	thumbnail: String, // url to article image
-	source: String, // News source (e.g. Guardian)
+	source: String, // news vendor (e.g. Guardian)
+	publishedAt: Date, // published date
 }, { timestamps: true });
 
 newsSchema.methods = {

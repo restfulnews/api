@@ -17,7 +17,8 @@ const router = new Router();
  * @apiName SearchNews
  * @apiGroup News
  * @apiPerNews user
- * @apiParam {String} access_token admin access token.
+ * @apiParam {String} Keywords News article keywords.
+ * @apiParam {String} BearerToken user access token.
  * @apiUse listParams
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -73,7 +74,7 @@ router.get(
  * @apiName RetrieveNews
  * @apiGroup News
  * @apiPerNews user
- * @apiParam {String} access_token user access token.
+ * @apiParam {String} BearerToken user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.

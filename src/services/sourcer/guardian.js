@@ -1,6 +1,7 @@
-const { guardianKey } = require('../../config');
 const Guardian = require('guardian-js');
-const md5 = require('md5');
+const fecha = require('fecha');
+const { guardianKey } = require('../../config');
+const { abstract, fingerprint } = require('./helper');
 
 /**
  * Guardian Sourcer - http://open-platform.theguardian.com
@@ -9,27 +10,42 @@ const md5 = require('md5');
  */
 
 const index = async ({
-	keyword,
+	topics,
+	/* Defaults parameters:
+	 * start_date = today - 5years
+	 * end_date = today
+	 */
+	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)).toISOString(),
+	end_date = new Date().toISOString(),
 }) => {
-	const api = new Guardian(guardianKey, false);
 	let allResults = [];
-	await api.content.search(keyword, {
+
+	const apiParams = {
 		showFields: ['body', 'thumbnail'],
-	})
+		orderBy: 'relevance',
+		fromDate: start_date,
+		toDate: end_date,
+	};
+
+	const api = new Guardian(guardianKey, false);
+
+	await api.content.search(topics, apiParams)
 		.then(async (response) => {
 			const responseObject = JSON.parse(response.body);
 			const { results } = responseObject.response;
+			if (!results) return [];
 			// restructure news list results since to conform with our News Model
-			const processedResults = await results.map(result => ({
+			allResults = await results.map(result => ({
 				title: result.webTitle,
-				fingerprint: md5(`${result.webTitle}-guardian`),
+				publishedAt: new Date(result.webPublicationDate),
+				fingerprint: fingerprint(result.webTitle, 'guardian'),
 				url: result.webUrl,
-				abstract: result.fields.body.replace(/<(?:.|\n)*?>/gm, ''),
+				abstract: abstract(result.fields.body),
 				thumbnail: result.fields.thumbnail,
 				source: 'guardian',
 			}));
-			allResults = processedResults;
 		});
+
 	return allResults;
 };
 

@@ -39,6 +39,7 @@
     "eslint": "^4.8.0",
     "eslint-plugin-import": "^2.7.0",
     "express": "^4.13.4",
+    "fecha": "^2.3.3",
     "google-auth-library": "^0.12.0",
     "guardian-js": "^1.0.11",
     "jsonwebtoken": "^8.1.0",
