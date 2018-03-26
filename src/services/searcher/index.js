@@ -8,8 +8,9 @@ const {
  * - saves news objects without duplicate fingerprints into the db
  */
 
-const searcher = (async (keyword, user, next) => {
-	guardian(keyword, response => next(response));
-});
+const searcher = async (query, user) => {
+	const results = await guardian(query);
+	return results;
+};
 
 module.exports = searcher;

@@ -30,7 +30,6 @@ newsSchema.methods = {
 			source: this.source,
 			abstract: this.abstract,
 			thumbnail: this.thumbnail,
-			fingerprint: this.fingerprint,
 		} : view;
 	},
 };

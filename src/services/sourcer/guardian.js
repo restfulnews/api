@@ -8,9 +8,12 @@ const md5 = require('md5');
  * (ie. src/api/news/model.js)
  */
 
-const index = (keyword, next) => {
+const index = async ({
+	keyword,
+}) => {
 	const api = new Guardian(guardianKey, false);
-	api.content.search(keyword, {
+	let allResults = [];
+	await api.content.search(keyword, {
 		showFields: ['body', 'thumbnail'],
 	})
 		.then(async (response) => {
@@ -25,9 +28,9 @@ const index = (keyword, next) => {
 				thumbnail: result.fields.thumbnail,
 				source: 'guardian',
 			}));
-			next(processedResults);
-		})
-		.catch(error => next(null));
+			allResults = processedResults;
+		});
+	return allResults;
 };
 
 module.exports = index;

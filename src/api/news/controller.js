@@ -10,7 +10,8 @@ const Searcher = require('../../services/searcher');
 */
 
 exports.search = asyncHandler(async ({ query, user }, res) => {
-	Searcher(query.keyword, user, response => res.json(response));
+	const results = await Searcher(query, user);
+	res.json(results);
 }, 'Unable to retrieve news articles.');
 
 /**
