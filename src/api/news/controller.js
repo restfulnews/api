@@ -1,9 +1,6 @@
 const _ = require('lodash');
-const { ObjectId } = require('mongoose').Types;
-const notifier = require('../../services/notifier');
 const config = require('../../config');
-const sendMail = require('../../services/sendgrid');
-const templates = require('../../services/templates');
+const { asyncHandler } = require('../../utils');
 const { success, notFound } = require('../../services/response/');
 const News = require('./model');
 
@@ -11,6 +8,10 @@ const News = require('./model');
 * CUSTOM FUNCTIONS
 */
 
+exports.search = asyncHandler(async ({ params, user }, res) => {
+	// TODO:
+	res.json(params, user);
+}, 'Unable to retrieve news articles.');
 
 /**
 * GENERIC FUNCTIONS (do not modify)
@@ -19,7 +20,7 @@ const News = require('./model');
 exports.create = ({ body, user }, res, next) => {
 	return News.create(body)
 		.then(news => news.view(true))
-		.then((news) => res.status(201).json(news))
+		.then(news => res.status(201).json(news))
 		.catch(next);
 };
 

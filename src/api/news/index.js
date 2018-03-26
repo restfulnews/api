@@ -3,6 +3,7 @@ const { middleware: query } = require('querymen');
 const { token } = require('../../services/passport');
 const {
 	create, index, show, update, destroy,
+	search,
 } = require('./controller');
 
 const router = new Router();
@@ -11,6 +12,22 @@ const router = new Router();
  * CUSTOM ROUTES
  */
 
+/**
+ * @api {get} /news Search for news articles
+ * @apiName SearchNews
+ * @apiGroup News
+ * @apiPerNews admin
+ * @apiParam {String} access_token admin access token.
+ * @apiUse listParams
+ * @apiSuccess {Object[]} news List of news.
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 401 admin access only.
+ */
+router.get(
+	'/search',
+	token({ required: true }),
+	search,
+);
 
 /**
 	* GENERIC ROUTES (do not modify these)
@@ -18,9 +35,9 @@ const router = new Router();
 
 /**
  * @api {post} /news Create News
- * @apiName CreateEntity
+ * @apiName CreateNews
  * @apiGroup News
- * @apiPerEntity user
+ * @apiPerNews user
  * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -35,9 +52,9 @@ router.post(
 
 /**
  * @api {get} /news Retrieve news
- * @apiName RetrieveEntity
+ * @apiName RetrieveNews
  * @apiGroup News
- * @apiPerEntity admin
+ * @apiPerNews admin
  * @apiParam {String} access_token admin access token.
  * @apiUse listParams
  * @apiSuccess {Object[]} news List of news.
@@ -46,16 +63,16 @@ router.post(
  */
 router.get(
 	'/',
-	token({ required: true, roles: ['admin'] }),
+	token({ required: true }),
 	query({ limit: { max: 500 } }),
 	index,
 );
 
 /**
  * @api {get} /news/:id Retrieve News
- * @apiName RetrieveEntity
+ * @apiName RetrieveNews
  * @apiGroup News
- * @apiPerEntity user
+ * @apiPerNews user
  * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -70,9 +87,9 @@ router.get(
 
 /**
  * @api {put} /news/:id Update News
- * @apiName UpdateEntity
+ * @apiName UpdateNews
  * @apiGroup News
- * @apiPerEntity user
+ * @apiPerNews user
  * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -87,9 +104,9 @@ router.put(
 
 /**
  * @api {delete} /news/:id Delete News
- * @apiName DeleteEntity
+ * @apiName DeleteNews
  * @apiGroup News
- * @apiPerEntity admin
+ * @apiPerNews admin
  * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 News not found.
