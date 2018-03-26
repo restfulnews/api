@@ -1,7 +1,15 @@
-const Guardian = require('./guardian');
+const {
+	guardian,
+} = require('../sourcer');
 
-const indexer = (keyword, next) => {
-	Guardian(keyword, response => next(response));
-};
+/**
+ * Indexer:
+ * - compiles results from different news sources into one
+ * - saves news objects without duplicate fingerprints into the db
+ */
+
+const indexer = (async (keyword, next) => {
+	guardian(keyword, response => next(response));
+});
 
 module.exports = indexer;
