@@ -3,15 +3,14 @@ const _ = require('lodash');
 const { asyncHandler } = require('../../utils');
 const { success, notFound } = require('../../services/response/');
 const News = require('./model');
-const Indexer = require('../../services/indexer');
+const Searcher = require('../../services/searcher');
 
 /**
 * CUSTOM FUNCTIONS
 */
 
 exports.search = asyncHandler(async ({ query, user }, res) => {
-	// TODO:
-	Indexer(query.keyword, response => res.json(response));
+	Searcher(query.keyword, user, response => res.json(response));
 }, 'Unable to retrieve news articles.');
 
 /**

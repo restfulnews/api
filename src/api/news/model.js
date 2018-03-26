@@ -39,6 +39,7 @@ newsSchema.plugin(mongooseKeywords, {
 	paths: [
 		'title',
 		'abstract',
+		'source',
 	],
 });
 
