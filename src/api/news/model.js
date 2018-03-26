@@ -11,6 +11,7 @@ const newsSchema = new mongoose.Schema({
 	abstract: String, // article description
 	url: String, // web url to article
 	thumbnail: String, // url to article image
+	source: String, // News source (e.g. Guardian)
 }, { timestamps: true });
 
 newsSchema.methods = {
@@ -20,15 +21,16 @@ newsSchema.methods = {
 			id: this.id,
 			createdAt: this.createdAt,
 			updatedAt: this.updatedAt,
+			url: this.url,
 			title: this.title,
 		};
 		return full ? {
 			// full view += simple view
 			...view,
-			fingerprint: this.fingerprint,
+			source: this.source,
 			abstract: this.abstract,
-			url: this.url,
 			thumbnail: this.thumbnail,
+			fingerprint: this.fingerprint,
 		} : view;
 	},
 };

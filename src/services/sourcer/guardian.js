@@ -23,6 +23,7 @@ const index = (keyword, next) => {
 				url: result.webUrl,
 				abstract: result.fields.body.replace(/<(?:.|\n)*?>/gm, ''),
 				thumbnail: result.fields.thumbnail,
+				source: 'guardian',
 			}));
 			next(processedResults);
 		})
