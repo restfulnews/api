@@ -64,7 +64,9 @@ function passwordAuthentication(email, password, done) {
 					return done();
 				}
 				return user.authenticate(password, user.password)
-					.then(returnedUser => done(null, returnedUser))
+					.then((returnedUser) => {
+						done(null, returnedUser);
+					})
 					.catch((authErr) => {
 						pino.error(authErr);
 						done();
