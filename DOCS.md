@@ -16,6 +16,7 @@
 	- [Create News](#create-news)
 	- [Delete News](#delete-news)
 	- [Retrieve News](#retrieve-news)
+	- [Search for news articles](#search-for-news-articles)
 	- [Update News](#update-news)
 	
 - [PasswordReset](#passwordreset)
@@ -159,7 +160,28 @@
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| BearerToken			| String			|  <p>user access token.</p>							|
+
+## Search for news articles
+
+
+
+	GET /news
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| topics			| String			|  <p>News topics split by a comma(,).</p>							|
+| start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| BearerToken			| String			|  <p>user access token.</p>							|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
 ## Update News
 

@@ -444,7 +444,7 @@ define({ "api": [
     "type": "post",
     "url": "/news",
     "title": "Create News",
-    "name": "CreateEntity",
+    "name": "CreateNews",
     "group": "News",
     "parameter": {
       "fields": {
@@ -505,7 +505,7 @@ define({ "api": [
     "type": "delete",
     "url": "/news/:id",
     "title": "Delete News",
-    "name": "DeleteEntity",
+    "name": "DeleteNews",
     "group": "News",
     "parameter": {
       "fields": {
@@ -558,7 +558,7 @@ define({ "api": [
     "type": "get",
     "url": "/news/:id",
     "title": "Retrieve News",
-    "name": "RetrieveEntity",
+    "name": "RetrieveNews",
     "group": "News",
     "parameter": {
       "fields": {
@@ -567,7 +567,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "access_token",
+            "field": "BearerToken",
             "description": "<p>user access token.</p>"
           }
         ]
@@ -619,7 +619,7 @@ define({ "api": [
     "type": "get",
     "url": "/news",
     "title": "Retrieve news",
-    "name": "RetrieveEntity",
+    "name": "RetrieveNews",
     "group": "News",
     "parameter": {
       "fields": {
@@ -711,10 +711,126 @@ define({ "api": [
     "groupTitle": "News"
   },
   {
+    "type": "get",
+    "url": "/news",
+    "title": "Search for news articles",
+    "name": "SearchNews",
+    "group": "News",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "topics",
+            "description": "<p>News topics split by a comma(,).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date.toISOString",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date.toISOString",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "BearerToken",
+            "description": "<p>user access token.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "q",
+            "description": "<p>Query to search.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "size": "1..30",
+            "optional": true,
+            "field": "page",
+            "defaultValue": "1",
+            "description": "<p>Page number.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "size": "1..100",
+            "optional": true,
+            "field": "limit",
+            "defaultValue": "30",
+            "description": "<p>Amount of returned items.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": true,
+            "field": "sort",
+            "defaultValue": "-createdAt",
+            "description": "<p>Order of returned items.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": true,
+            "field": "fields",
+            "description": "<p>Fields to be returned.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "news",
+            "description": "<p>List of news.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>admin access only.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "src/api/news/index.js",
+    "groupTitle": "News"
+  },
+  {
     "type": "put",
     "url": "/news/:id",
     "title": "Update News",
-    "name": "UpdateEntity",
+    "name": "UpdateNews",
     "group": "News",
     "parameter": {
       "fields": {
