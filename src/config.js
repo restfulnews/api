@@ -29,9 +29,9 @@ const baseConfig = {
 	root: path.join(__dirname, '..'),
 	port: process.env.PORT || 9000,
 	ip: process.env.IP || '0.0.0.0',
-	noReplyEmail: 'noreply@cropian.com',
-	enquiriesEmail: 'enquiries@cropian.com',
-	adminEmail: 'admin@cropian.com',
+	noReplyEmail: 'noreply@restfulnews.com',
+	enquiriesEmail: 'enquiries@restfulnews.com',
+	adminEmail: 'admin@restfulnews.com',
 	notificationEmail: process.env.NOTIFICATION_EMAIL,
 	emailNotifications: !!Number(process.env.EMAIL_NOTIFICATIONS),
 	slackNotifications: !!Number(process.env.SLACK_NOTIFICATIONS),
@@ -63,9 +63,9 @@ const developmentConfig = {
 const productionConfig = {
 	ip: process.env.IP || undefined,
 	port: 8000,
-	noReplyEmail: 'noreply@cropian.com',
-	enquiriesEmail: 'enquiries@cropian.com',
-	adminEmail: 'admin@cropian.com',
+	noReplyEmail: 'noreply@restfulnews.com',
+	enquiriesEmail: 'enquiries@restfulnews.com',
+	adminEmail: 'admin@restfulnews.com',
 	mongo: {
 		uri: `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTS}/${process.env.MONGO_DB_NAME}?ssl=true&replicaSet=${process.env.MONGO_CLUSTER_NAME}&authSource=admin`,
 		options: {
