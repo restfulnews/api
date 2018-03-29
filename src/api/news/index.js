@@ -13,7 +13,7 @@ const router = new Router();
  */
 
 /**
- * @api {get} /news/search Search for news articles
+ * @api {get} /news/search 1. Search for news articles
  * @apiName SearchNews
  * @apiGroup News
  * @apiPerNews user
@@ -27,7 +27,7 @@ const router = new Router();
  * @apiError 401 admin access only.
  * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://api.restfulnews.com/news/search?topics=<topics> \
+ * --url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>>&end_date=<iso_time> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
