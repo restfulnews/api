@@ -1,3 +1,3 @@
-FROM platformapi_api
+FROM restfulnews
 
 CMD [ "npm", "run", "test" ]
