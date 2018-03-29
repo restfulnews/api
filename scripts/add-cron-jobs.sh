@@ -4,7 +4,7 @@
 function addCronJobs {
 # Renew SSL
 echo "Adding SSL renewal script"
-echo "0 2 */15 * * /srv/restful-news/scripts/renew-ssl.sh >> /srv/restful-news/logs/renew-ssl.log 2>&1" >> mycron
+echo "0 2 */15 * * /srv/restfulnews/scripts/renew-ssl.sh >> /srv/restfulnews/logs/renew-ssl.log 2>&1" >> mycron
 # Install new cron file
 crontab mycron
 rm mycron

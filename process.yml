@@ -2,5 +2,5 @@ apps:
   - script: ./src/index.js
     instances: 4
     exec_mode: cluster
-    log_file: "/home/me/restful-news/api.log"
+    log_file: "/home/me/restfulnews/api.log"
     merge_logs: true
