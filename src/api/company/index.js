@@ -33,6 +33,9 @@ const router = new Router();
  * --header 'content-type: application/json' \
  * --data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
  *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ *
  * {
  *  "id": "<company id>",
  *  "createdAt": "<created at date>",
@@ -61,6 +64,9 @@ router.post(
  * --url http://api.restfulnews.com/company \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * [
  *  {
@@ -100,6 +106,9 @@ router.get(
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ *
  * {
  *  "id": "<company id>",
  *  "createdAt": "<created at date>",
@@ -129,6 +138,9 @@ router.get(
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  * --data '{"name":"<name>", "market":"<market>"}'
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "id": "<company id>",

@@ -35,6 +35,9 @@ const {
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
  *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ *
  * [
  *  {
  *    "id": "<user id>",
@@ -91,6 +94,9 @@ router.post(
  * --header 'authorization: Bearer <Bearer Token>' \
  * --header 'content-type: application/json'
  *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ *
  * {
  *  "id":"<user id>",
  *  "name":"<name>",
@@ -116,9 +122,12 @@ router.get(
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
  * @apiExample {curl} Curl Usage:
- * curl --request GET --url http://localhost:9000/users/<user id> \
+ * curl --request GET --url http://api.restfulnews.com/users/<user id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "id": "<user id>",
@@ -147,10 +156,13 @@ router.get(
  * @apiError 401 Master access only.
  * @apiError 409 Email already registered.
  * @apiExample {curl} Curl Usage:
- * curl --request POST --url http://localhost:9000/users \
+ * curl --request POST --url http://api.restfulnews.com/users \
  * --header 'content-type: application/json' --data '{ \
  * "email": "<email>", "password": "<password>", \
  * "name": "<name>", "picture": "<picture link>"}'
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "token": <"bearer token">,
@@ -201,10 +213,13 @@ router.put(
  * @apiError 404 User not found.
  * @apiExample {curl} Curl Usage:
  * curl --request PUT \
- *  --url http://localhost:9000/users/<user_id>/update \
+ *  --url http://api.restfulnews.com/users/<user_id>/update \
  *  --header 'authorization: Bearer <Bearer Token>' \
  *  --header 'content-type: application/json' \
  *  --data '{"name": "<name>", "picture": "<picture link>"}'
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "id": "<user id>",
@@ -233,10 +248,13 @@ router.put(
  * @apiError 404 User not found.
  * @apiExample {curl} Curl Usage:
  * curl --request PUT \
- *  --url http://localhost:9000/users/<user_id>/password \
+ *  --url http://api.restfulnews.com/users/<user_id>/password \
  *  --header 'authorization: Bearer <Bearer Token>' \
  *  --header 'content-type: application/json' \
  *  --data '{"password":"<new password>}'
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "id": "<user id>",
@@ -265,7 +283,7 @@ router.put(
  * @apiError 404 User not found.
  * @apiExample {curl} Curl Usage:
  * curl --request DELETE \
- * --url 'http://localhost:9000/users/<user_id>' \
+ * --url 'http://api.restfulnews.com/users/<user_id>' \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
  */

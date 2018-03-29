@@ -195,6 +195,9 @@ router.get(
  * --data '{"title":"<title>", "url":"<url", "source":"<source>", \
  * "abstract":"<abstract>", "thumbnail":"<thumbnail>"}'
  *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ *
  * {
  *  "id": "<news article id>",
  *  "createdAt": "<created at date>",

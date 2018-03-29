@@ -1,6 +1,6 @@
-# restful-news v0.0.1
+# RESTfulNews API v0.1.4
 
-
+Open source news API for quants.
 
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
@@ -51,14 +51,21 @@
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
-curl http://0.0.0.0:9000/auth -XPOST \
+curl http://api.restfulnews.com/auth -XPOST \
 -H 'Content-Type:application/json' \
 -d '{"email":"bobsagget@gmail.com","password":"bobsagget"}' \
 --oauth2-bearer "<bearer token>"
+```
 
+### Success Response
+
+Success-Response:
+
+```
+    HTTP/1.1 200 OK
 {
  "token":"<bearer token>",
  "user": {
@@ -71,7 +78,6 @@ curl http://0.0.0.0:9000/auth -XPOST \
  }
 }
 ```
-
 ## Authenticate with Google
 
 
@@ -87,10 +93,10 @@ curl http://0.0.0.0:9000/auth -XPOST \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
-curl http://0.0.0.0:9000/auth -XPOST \
+curl http://api.restfulnews.com/auth -XPOST \
 -H 'Content-Type:application/json' \
 -d '{"token":"<Google OAuth Token>"}' \
 --oauth2-bearer "<bearer token>"
@@ -125,11 +131,11 @@ curl http://0.0.0.0:9000/auth -XPOST \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request POST \
---url http://localhost:9000/company \
+--url http://api.restfulnews.com/company \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
@@ -157,11 +163,11 @@ curl --request POST \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request DELETE \
---url http://localhost:9000/company/5abcec87b8329b17e45b3e50 \
+--url http://api.restfulnews.com/company/5abcec87b8329b17e45b3e50 \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 ```
@@ -186,11 +192,11 @@ curl --request DELETE \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request GET \
---url http://localhost:9000/company \
+--url http://api.restfulnews.com/company \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 
@@ -225,11 +231,11 @@ curl --request GET \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request PUT \
---url http://localhost:9000/company/<company id> \
+--url http://api.restfulnews.com/company/<company id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"name":"<name>", "market":"<market>"}'
@@ -259,11 +265,11 @@ curl --request PUT \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request POST \
---url http://localhost:9000/news \
+--url http://api.restfulnews.com/news \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"title": "<title>", "publishedAt": "<published at date>", \
@@ -297,11 +303,11 @@ curl --request POST \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request DELETE \
---url http://localhost:9000/news/<news article id> \
+--url http://api.restfulnews.com/news/<news article id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 ```
@@ -321,11 +327,11 @@ curl --request DELETE \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request GET \
---url http://localhost:9000/news/<news article id> \
+--url http://api.restfulnews.com/news/<news article id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 
@@ -364,11 +370,11 @@ curl --request GET \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request GET \
---url http://localhost:9000/news/search?topics=<topics> \
+--url http://api.restfulnews.com/news/search?topics=<topics> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 
@@ -409,11 +415,11 @@ curl --request GET \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request PUT \
---url http://localhost:9000/news/<news article id> \
+--url http://api.restfulnews.com/news/<news article id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"title":"<title>", "url":"<url", "source":"<source>", \
@@ -482,10 +488,10 @@ curl --request PUT \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
-curl --request POST --url http://localhost:9000/users \
+curl --request POST --url http://api.restfulnews.com/users \
 --header 'content-type: application/json' --data '{ \
 "email": "<email>", "password": "<password>", \
 "name": "<name>", "picture": "<picture link>"}'
@@ -519,11 +525,11 @@ curl --request POST --url http://localhost:9000/users \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request DELETE \
---url 'http://localhost:9000/users/<user_id>' \
+--url 'http://api.restfulnews.com/users/<user_id>' \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 ```
@@ -537,11 +543,11 @@ curl --request DELETE \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request POST \
---url http://localhost:9000/users/<email> \
+--url http://api.restfulnews.com/users/<email> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 ```
@@ -561,11 +567,11 @@ curl --request POST \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request GET \
---url http://localhost:9000/users/me \
+--url http://api.restfulnews.com/users/me \
 --header 'authorization: Bearer <Bearer Token>' \
 --header 'content-type: application/json'
 
@@ -588,10 +594,10 @@ curl --request GET \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
-curl --request GET --url http://localhost:9000/users/<user id> \
+curl --request GET --url http://api.restfulnews.com/users/<user id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 
@@ -623,11 +629,11 @@ curl --request GET --url http://localhost:9000/users/<user id> \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request GET \
---url http://localhost:9000/users \
+--url http://api.restfulnews.com/users \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
 
@@ -671,11 +677,11 @@ curl --request GET \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request PUT \
- --url http://localhost:9000/users/<user_id>/password \
+ --url http://api.restfulnews.com/users/<user_id>/password \
  --header 'authorization: Bearer <Bearer Token>' \
  --header 'content-type: application/json' \
  --data '{"password":"<new password>}'
@@ -707,11 +713,11 @@ curl --request PUT \
 
 ### Examples
 
-Example Usage:
+Curl Usage:
 
 ```
 curl --request PUT \
- --url http://localhost:9000/users/<user_id>/update \
+ --url http://api.restfulnews.com/users/<user_id>/update \
  --header 'authorization: Bearer <Bearer Token>' \
  --header 'content-type: application/json' \
  --data '{"name": "<name>", "picture": "<picture link>"}'

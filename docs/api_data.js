@@ -36,7 +36,14 @@ define({ "api": [
             "description": "<p>Current user's data.</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n{\n \"token\":\"<bearer token>\",\n \"user\": {\n   \"id\":\"<user_id token>\",\n   \"name\":\"<name>\",\n   \"picture\":\"<display picture link>\",\n   \"role\":\"<role>\",\n   \"email\":\"<email>\",\n   \"createdAt\":\"<created at date>\"\n }\n}",
+          "type": "json"
+        }
+      ]
     },
     "error": {
       "fields": {
@@ -52,8 +59,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl http://0.0.0.0:9000/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"email\":\"bobsagget@gmail.com\",\"password\":\"bobsagget\"}' \\\n--oauth2-bearer \"<bearer token>\"\n\n{\n \"token\":\"<bearer token>\",\n \"user\": {\n   \"id\":\"<user_id token>\",\n   \"name\":\"<name>\",\n   \"picture\":\"<display picture link>\",\n   \"role\":\"<role>\",\n   \"email\":\"<email>\",\n   \"createdAt\":\"<created at date>\"\n }\n}",
+        "title": "Curl Usage:",
+        "content": "curl http://api.restfulnews.com/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"email\":\"bobsagget@gmail.com\",\"password\":\"bobsagget\"}' \\\n--oauth2-bearer \"<bearer token>\"",
         "type": "curl"
       }
     ],
@@ -112,10 +119,15 @@ define({ "api": [
         ]
       }
     },
+    "sampleRequest": [
+      {
+        "url": "http://api.restfulnews.com/auth"
+      }
+    ],
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl http://0.0.0.0:9000/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"token\":\"<Google OAuth Token>\"}' \\\n--oauth2-bearer \"<bearer token>\"\n\n{\n \"token\":\"<bearer token>\",\n \"user\": {\n     \"id\":\"<user_id token>\",\n     \"name\":\"<name>\",\n     \"picture\":\"<display picture link>\",\n     \"role\":\"<role>\",\n     \"email\":\"<email>\",\n     \"createdAt\":\"<created at date>\"\n }\n}",
+        "title": "Curl Usage:",
+        "content": "curl http://api.restfulnews.com/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"token\":\"<Google OAuth Token>\"}' \\\n--oauth2-bearer \"<bearer token>\"\n\n{\n \"token\":\"<bearer token>\",\n \"user\": {\n     \"id\":\"<user_id token>\",\n     \"name\":\"<name>\",\n     \"picture\":\"<display picture link>\",\n     \"role\":\"<role>\",\n     \"email\":\"<email>\",\n     \"createdAt\":\"<created at date>\"\n }\n}",
         "type": "curl"
       }
     ],
@@ -182,8 +194,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request POST \\\n--url http://localhost:9000/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"ticker\":\"<ticket>\", \"market\":\"<market>\"}'\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request POST \\\n--url http://api.restfulnews.com/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"ticker\":\"<ticket>\", \"market\":\"<market>\"}'\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
         "type": "curl"
       }
     ],
@@ -242,8 +254,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request DELETE \\\n--url http://localhost:9000/company/5abcec87b8329b17e45b3e50 \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\",
+        "title": "Curl Usage:",
+        "content": "curl --request DELETE \\\n--url http://api.restfulnews.com/company/5abcec87b8329b17e45b3e50 \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\",
         "type": "curl"
       }
     ],
@@ -344,8 +356,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n {\n  \"id\": \"<company id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"name\": \"<name>\"\n },\n {\n  \"id\": \"<company id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"name\": \"<name>\"\n }\n]",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n {\n  \"id\": \"<company id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"name\": \"<name>\"\n },\n {\n  \"id\": \"<company id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"name\": \"<name>\"\n }\n]",
         "type": "curl"
       }
     ],
@@ -412,8 +424,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
         "type": "curl"
       }
     ],
@@ -480,8 +492,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request PUT \\\n--url http://localhost:9000/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"market\":\"<market>\"}'\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request PUT \\\n--url http://api.restfulnews.com/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"market\":\"<market>\"}'\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
         "type": "curl"
       }
     ],
@@ -548,8 +560,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request POST \\\n--url http://localhost:9000/news \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"title\": \"<title>\", \"publishedAt\": \"<published at date>\", \\\n \"fingerprint\": \"<fingerprint id>\", \"url\": \"<url>\", \"abstract\": \"<abstract>\", \\\n \"thumbnail\": \"<thumbnail link>\", \"source\": \"<source>\"}'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request POST \\\n--url http://api.restfulnews.com/news \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"title\": \"<title>\", \"publishedAt\": \"<published at date>\", \\\n \"fingerprint\": \"<fingerprint id>\", \"url\": \"<url>\", \"abstract\": \"<abstract>\", \\\n \"thumbnail\": \"<thumbnail link>\", \"source\": \"<source>\"}'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
         "type": "curl"
       }
     ],
@@ -608,8 +620,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request DELETE \\\n--url http://localhost:9000/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
+        "title": "Curl Usage:",
+        "content": "curl --request DELETE \\\n--url http://api.restfulnews.com/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
         "type": "curl"
       }
     ],
@@ -676,8 +688,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
         "type": "curl"
       }
     ],
@@ -778,8 +790,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/news \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n[\n {\n  \"id\": \"<news article id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"url\": \"<url>\",\n  \"title\": \"<title>\",\n  \"source\": \"<source>\",\n  \"abstract\": \"<abstract>\",\n  \"thumbnail\": \"<thumbnail link>\"\n },\n {\n  \"id\": \"<news article id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"url\": \"<url>\",\n  \"title\": \"<title>\",\n  \"source\": \"<source>\",\n  \"abstract\": \"<abstract>\",\n  \"thumbnail\": \"<thumbnail link>\"\n }\n]",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n[\n {\n  \"id\": \"<news article id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"url\": \"<url>\",\n  \"title\": \"<title>\",\n  \"source\": \"<source>\",\n  \"abstract\": \"<abstract>\",\n  \"thumbnail\": \"<thumbnail link>\"\n },\n {\n  \"id\": \"<news article id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"url\": \"<url>\",\n  \"title\": \"<title>\",\n  \"source\": \"<source>\",\n  \"abstract\": \"<abstract>\",\n  \"thumbnail\": \"<thumbnail link>\"\n }\n]",
         "type": "curl"
       }
     ],
@@ -901,8 +913,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/news/search?topics=<topics> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n}\n]",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/search?topics=<topics> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n}\n]",
         "type": "curl"
       }
     ],
@@ -969,8 +981,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request PUT \\\n--url http://localhost:9000/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"title\":\"<title>\", \"url\":\"<url\", \"source\":\"<source>\", \\\n\"abstract\":\"<abstract>\", \"thumbnail\":\"<thumbnail>\"}'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request PUT \\\n--url http://api.restfulnews.com/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"title\":\"<title>\", \"url\":\"<url\", \"source\":\"<source>\", \\\n\"abstract\":\"<abstract>\", \"thumbnail\":\"<thumbnail>\"}'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
         "type": "curl"
       }
     ],
@@ -1181,8 +1193,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request POST --url http://localhost:9000/users \\\n--header 'content-type: application/json' --data '{ \\\n\"email\": \"<email>\", \"password\": \"<password>\", \\\n\"name\": \"<name>\", \"picture\": \"<picture link>\"}'\n\n{\n \"token\": <\"bearer token\">,\n \"user\":\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture link>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\" : \"<created at date>\"\n }\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request POST --url http://api.restfulnews.com/users \\\n--header 'content-type: application/json' --data '{ \\\n\"email\": \"<email>\", \"password\": \"<password>\", \\\n\"name\": \"<name>\", \"picture\": \"<picture link>\"}'\n\n{\n \"token\": <\"bearer token\">,\n \"user\":\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture link>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\" : \"<created at date>\"\n }\n}",
         "type": "curl"
       }
     ],
@@ -1248,8 +1260,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request DELETE \\\n--url 'http://localhost:9000/users/<user_id>' \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
+        "title": "Curl Usage:",
+        "content": "curl --request DELETE \\\n--url 'http://api.restfulnews.com/users/<user_id>' \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
         "type": "curl"
       }
     ],
@@ -1283,8 +1295,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request POST \\\n--url http://localhost:9000/users/<email> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
+        "title": "Curl Usage:",
+        "content": "curl --request POST \\\n--url http://api.restfulnews.com/users/<email> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'",
         "type": "curl"
       }
     ],
@@ -1333,8 +1345,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/users/me \\\n--header 'authorization: Bearer <Bearer Token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\":\"<user id>\",\n \"name\":\"<name>\",\n \"picture\":\"<picture link>\",\n \"role\":\"<role>\",\n \"email\":\"<email>\",\n \"createdAt\":\"<created at date>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/users/me \\\n--header 'authorization: Bearer <Bearer Token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\":\"<user id>\",\n \"name\":\"<name>\",\n \"picture\":\"<picture link>\",\n \"role\":\"<role>\",\n \"email\":\"<email>\",\n \"createdAt\":\"<created at date>\"\n}",
         "type": "curl"
       }
     ],
@@ -1380,8 +1392,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET --url http://localhost:9000/users/<user id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request GET --url http://api.restfulnews.com/users/<user id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\"\n}",
         "type": "curl"
       }
     ],
@@ -1489,8 +1501,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request GET \\\n--url http://localhost:9000/users \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n[\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\": \"<created at date>\"\n },\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\": \"<created at date>\"\n }\n]",
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/users \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n[\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\": \"<created at date>\"\n },\n {\n   \"id\": \"<user id>\",\n   \"name\": \"<name>\",\n   \"picture\": \"<picture>\",\n   \"role\": \"<role>\",\n   \"email\": \"<email>\",\n   \"createdAt\": \"<created at date>\"\n }\n]",
         "type": "curl"
       }
     ],
@@ -1571,8 +1583,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request PUT \\\n --url http://localhost:9000/users/<user_id>/password \\\n --header 'authorization: Bearer <Bearer Token>' \\\n --header 'content-type: application/json' \\\n --data '{\"password\":\"<new password>}'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\",\n \"email\": \"<email>\",\n \"createdAt\": \"<created at date>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request PUT \\\n --url http://api.restfulnews.com/users/<user_id>/password \\\n --header 'authorization: Bearer <Bearer Token>' \\\n --header 'content-type: application/json' \\\n --data '{\"password\":\"<new password>}'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\",\n \"email\": \"<email>\",\n \"createdAt\": \"<created at date>\"\n}",
         "type": "curl"
       }
     ],
@@ -1660,8 +1672,8 @@ define({ "api": [
     },
     "examples": [
       {
-        "title": "Example Usage:",
-        "content": "curl --request PUT \\\n --url http://localhost:9000/users/<user_id>/update \\\n --header 'authorization: Bearer <Bearer Token>' \\\n --header 'content-type: application/json' \\\n --data '{\"name\": \"<name>\", \"picture\": \"<picture link>\"}'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\",\n \"email\": \"<email>\",\n \"createdAt\": \"<created at date>\"\n}",
+        "title": "Curl Usage:",
+        "content": "curl --request PUT \\\n --url http://api.restfulnews.com/users/<user_id>/update \\\n --header 'authorization: Bearer <Bearer Token>' \\\n --header 'content-type: application/json' \\\n --data '{\"name\": \"<name>\", \"picture\": \"<picture link>\"}'\n\n{\n \"id\": \"<user id>\",\n \"name\": \"<name>\",\n \"picture\": \"<picture link>\",\n \"role\": \"<role>\",\n \"email\": \"<email>\",\n \"createdAt\": \"<created at date>\"\n}",
         "type": "curl"
       }
     ],

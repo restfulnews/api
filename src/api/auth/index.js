@@ -15,10 +15,13 @@ const router = new Router();
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Master access only or invalid credentials.
  * @apiExample {curl} Curl Usage:
- * curl http://0.0.0.0:9000/auth -XPOST \
+ * curl http://api.restfulnews.com/auth -XPOST \
  * -H 'Content-Type:application/json' \
  * -d '{"email":"bobsagget@gmail.com","password":"bobsagget"}' \
  * --oauth2-bearer "<bearer token>"
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "token":"<bearer token>",
@@ -53,11 +56,15 @@ router.post(
  * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Invalid credentials.
+ * @apiSampleRequest http://api.restfulnews.com/auth
  * @apiExample {curl} Curl Usage:
- * curl http://0.0.0.0:9000/auth -XPOST \
+ * curl http://api.restfulnews.com/auth -XPOST \
  * -H 'Content-Type:application/json' \
  * -d '{"token":"<Google OAuth Token>"}' \
  * --oauth2-bearer "<bearer token>"
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  *
  * {
  *  "token":"<bearer token>",

@@ -39,12 +39,12 @@ npm run docs # generate API docs
 
 #### Creating a user
 ```bash
-curl -X POST http://0.0.0.0:9000/users -i -d "email=test@example.com&password=123456&access_token=MASTER_KEY_HERE"
+curl -X POST http://api.restfulnews.com/users -i -d "email=test@example.com&password=123456&access_token=MASTER_KEY_HERE"
 ```
 
 #### Authenticating a user
 ```bash
-curl -X POST http://0.0.0.0:9000/auth -i -u test@example.com:123456 -d "access_token=MASTER_KEY_HERE"
+curl -X POST http://api.restfulnews.com/auth -i -u test@example.com:123456 -d "access_token=MASTER_KEY_HERE"
 ```
 
 ## Error handling
