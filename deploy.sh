@@ -23,7 +23,8 @@ cd /srv/$DOCKER_TAG
 sed 's/$domain/'"${DOMAIN_NAME}"'/' ${BASH_SOURCE%/*}/nginx/src.conf > ${BASH_SOURCE%/*}/nginx/api.conf
 
 # Rebuild
-docker-compose build
+docker-compose build api
+docker-compose build nginx
 
 # Build test environment
 docker build -t $DOCKER_TAG-test -f test.Dockerfile .
@@ -37,4 +38,11 @@ docker-compose down --remove-orphans
 docker-compose up -d
 
 # Remove unused images
-docker image prune -a -f
+docker system prune -f
+
+# Remove unused branches
+# TODO: Make this conditional on whether or not thing exists
+git branch --merged | grep -v '*' | xargs git branch -D
+
+# exit 0 if everything ok (solve direct above TODO to avoid this step)
+exit 0

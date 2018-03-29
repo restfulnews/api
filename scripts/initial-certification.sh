@@ -10,16 +10,16 @@ function initCert {
 
   # Run Nginx container to serve ssl
   docker run --rm -d \
-        -v platformapi_certs:/etc/letsencrypt \
-        -v platformapi_certs-data:/data/letsencrypt \
+        -v restfulnews_certs:/etc/letsencrypt \
+        -v restfulnews_certs-data:/data/letsencrypt \
         --name nginx-ssl \
         -p 80:80 \
         nginx-ssl
 
   # Run certbot with same volumes to generate SSL
   docker run -it --rm \
-        -v platformapi_certs:/etc/letsencrypt \
-        -v platformapi_certs-data:/data/letsencrypt \
+        -v restfulnews_certs:/etc/letsencrypt \
+        -v restfulnews_certs-data:/data/letsencrypt \
         deliverous/certbot \
         certonly \
         --webroot --webroot-path=/data/letsencrypt \
