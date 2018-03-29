@@ -25,9 +25,9 @@ const router = new Router();
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://localhost:9000/news/search?topics=<topics> \
+ * --url http://api.restfulnews.com/news/search?topics=<topics> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
@@ -72,9 +72,9 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request POST \
- * --url http://localhost:9000/news \
+ * --url http://api.restfulnews.com/news \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  * --data '{"title": "<title>", "publishedAt": "<published at date>", \
@@ -108,9 +108,9 @@ router.post(
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://localhost:9000/news \
+ * --url http://api.restfulnews.com/news \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
  *
@@ -154,9 +154,9 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://localhost:9000/news/<news article id> \
+ * --url http://api.restfulnews.com/news/<news article id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
  *
@@ -187,9 +187,9 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request PUT \
- * --url http://localhost:9000/news/<news article id> \
+ * --url http://api.restfulnews.com/news/<news article id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  * --data '{"title":"<title>", "url":"<url", "source":"<source>", \
@@ -221,9 +221,9 @@ router.put(
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 News not found.
  * @apiError 401 admin access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request DELETE \
- * --url http://localhost:9000/news/<news article id> \
+ * --url http://api.restfulnews.com/news/<news article id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json'
  */

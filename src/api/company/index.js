@@ -26,9 +26,9 @@ const router = new Router();
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request POST \
- * --url http://localhost:9000/company \
+ * --url http://api.restfulnews.com/company \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  * --data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
@@ -56,9 +56,9 @@ router.post(
  * @apiSuccess {Object[]} company List of company.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://localhost:9000/company \
+ * --url http://api.restfulnews.com/company \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
@@ -94,9 +94,9 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://localhost:9000/company/<company id> \
+ * --url http://api.restfulnews.com/company/<company id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
@@ -123,9 +123,9 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request PUT \
- * --url http://localhost:9000/company/<company id> \
+ * --url http://api.restfulnews.com/company/<company id> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  * --data '{"name":"<name>", "market":"<market>"}'
@@ -152,9 +152,9 @@ router.put(
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Company not found.
  * @apiError 401 admin access only.
- * @apiExample {curl} Example Usage:
+ * @apiExample {curl} Curl Usage:
  * curl --request DELETE \
- * --url http://localhost:9000/company/5abcec87b8329b17e45b3e50 \
+ * --url http://api.restfulnews.com/company/5abcec87b8329b17e45b3e50 \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *

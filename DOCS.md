@@ -561,10 +561,9 @@ curl --request POST \
 
 ### Examples
 
-@apiExample {curl} Example Usage:
+Example Usage:
 
 ```
-@apiExample {curl} Example Usage:
 curl --request GET \
 --url http://localhost:9000/users/me \
 --header 'authorization: Bearer <Bearer Token>' \
