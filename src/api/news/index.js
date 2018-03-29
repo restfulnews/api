@@ -67,7 +67,7 @@ router.get(
  * @apiName CreateNews
  * @apiGroup News
  * @apiPerNews user
- * @apiParam {String} access_token user access token.
+ * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
@@ -103,7 +103,7 @@ router.post(
  * @apiName RetrieveNews
  * @apiGroup News
  * @apiPerNews admin
- * @apiParam {String} access_token admin access token.
+ * @apiHeader {String} Bearer admin access token.
  * @apiUse listParams
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -182,7 +182,7 @@ router.get(
  * @apiName UpdateNews
  * @apiGroup News
  * @apiPerNews user
- * @apiParam {String} access_token user access token.
+ * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
@@ -220,7 +220,7 @@ router.put(
  * @apiName DeleteNews
  * @apiGroup News
  * @apiPerNews admin
- * @apiParam {String} access_token admin access token.
+ * @apiHeader {String} Bearer admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 News not found.
  * @apiError 401 admin access only.

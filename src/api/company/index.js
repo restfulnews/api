@@ -21,7 +21,7 @@ const router = new Router();
  * @apiName CreateEntity
  * @apiGroup Company
  * @apiPerEntity user
- * @apiParam {String} access_token user access token.
+ * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} Company Company's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
@@ -54,7 +54,7 @@ router.post(
  * @apiName RetrieveEntity
  * @apiGroup Company
  * @apiPerEntity admin
- * @apiParam {String} access_token admin access token.
+ * @apiHeader {String} Bearer admin access token.
  * @apiUse listParams
  * @apiSuccess {Object[]} company List of company.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -95,7 +95,7 @@ router.get(
  * @apiName RetrieveEntity
  * @apiGroup Company
  * @apiPerEntity user
- * @apiParam {String} access_token user access token.
+ * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} Company Company's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
@@ -127,7 +127,7 @@ router.get(
  * @apiName UpdateEntity
  * @apiGroup Company
  * @apiPerEntity user
- * @apiParam {String} access_token user access token.
+ * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} Company Company's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
@@ -160,7 +160,7 @@ router.put(
  * @apiName DeleteEntity
  * @apiGroup Company
  * @apiPerEntity admin
- * @apiParam {String} access_token admin access token.
+ * @apiHeader {String} Bearer admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Company not found.
  * @apiError 401 admin access only.

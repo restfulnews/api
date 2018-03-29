@@ -19,10 +19,6 @@ Open source news API for quants.
 	- [Search for news articles](#search-for-news-articles)
 	- [Update News](#update-news)
 	
-- [PasswordReset](#passwordreset)
-	- [Send email](#send-email)
-	- [Send email](#send-email)
-	
 - [User](#user)
 	- [Create user](#create-user)
 	- [Delete user](#delete-user)
@@ -30,7 +26,9 @@ Open source news API for quants.
 	- [Retrieve current user](#retrieve-current-user)
 	- [Retrieve user](#retrieve-user)
 	- [Retrieve users](#retrieve-users)
+	- [Send email](#send-email)
 	- [Update password](#update-password)
+	- [Send email](#send-email)
 	- [Update user](#update-user)
 	
 
@@ -65,7 +63,8 @@ curl http://api.restfulnews.com/auth -XPOST \
 Success-Response:
 
 ```
-    HTTP/1.1 200 OK
+HTTP/1.1 200 OK
+
 {
  "token":"<bearer token>",
  "user": {
@@ -84,12 +83,11 @@ Success-Response:
 
 	POST /auth/google
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>Google user accessToken.</p>							|
+| Bearer			| String			|  <p>Google user accessToken.</p>							|
 
 ### Examples
 
@@ -100,6 +98,14 @@ curl http://api.restfulnews.com/auth -XPOST \
 -H 'Content-Type:application/json' \
 -d '{"token":"<Google OAuth Token>"}' \
 --oauth2-bearer "<bearer token>"
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "token":"<bearer token>",
@@ -113,7 +119,6 @@ curl http://api.restfulnews.com/auth -XPOST \
  }
 }
 ```
-
 # Company
 
 ## Create Company
@@ -122,12 +127,11 @@ curl http://api.restfulnews.com/auth -XPOST \
 
 	POST /company
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| Bearer			| String			|  <p>user access token.</p>							|
 
 ### Examples
 
@@ -139,6 +143,14 @@ curl --request POST \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<company id>",
@@ -147,19 +159,17 @@ curl --request POST \
  "name": "<name>"
 }
 ```
-
 ## Delete Company
 
 
 
 	DELETE /company/:id
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>admin access token.</p>							|
+| Bearer			| String			|  <p>admin access token.</p>							|
 
 ### Examples
 
@@ -178,12 +188,16 @@ curl --request DELETE \
 
 	GET /company
 
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Bearer			| String			|  <p>admin access token.</p>							|
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>admin access token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -199,6 +213,14 @@ curl --request GET \
 --url http://api.restfulnews.com/company \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 [
  {
@@ -215,19 +237,17 @@ curl --request GET \
  }
 ]
 ```
-
 ## Update Company
 
 
 
 	PUT /company/:id
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| Bearer			| String			|  <p>user access token.</p>							|
 
 ### Examples
 
@@ -239,6 +259,14 @@ curl --request PUT \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 --data '{"name":"<name>", "market":"<market>"}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<company id>",
@@ -247,7 +275,6 @@ curl --request PUT \
  "name": "<name>"
 }
 ```
-
 # News
 
 ## Create News
@@ -256,12 +283,11 @@ curl --request PUT \
 
 	POST /news
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| Bearer			| String			|  <p>user access token.</p>							|
 
 ### Examples
 
@@ -294,12 +320,11 @@ curl --request POST \
 
 	DELETE /news/:id
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>admin access token.</p>							|
+| Bearer			| String			|  <p>admin access token.</p>							|
 
 ### Examples
 
@@ -406,12 +431,11 @@ curl --request GET \
 
 	PUT /news/:id
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>user access token.</p>							|
+| Bearer			| String			|  <p>user access token.</p>							|
 
 ### Examples
 
@@ -424,6 +448,14 @@ curl --request PUT \
 --header 'content-type: application/json' \
 --data '{"title":"<title>", "url":"<url", "source":"<source>", \
 "abstract":"<abstract>", "thumbnail":"<thumbnail>"}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<news article id>",
@@ -436,36 +468,6 @@ curl --request PUT \
  "thumbnail": "<thumbnail link>"
 }
 ```
-
-# PasswordReset
-
-## Send email
-
-
-
-	GET /users/reset-code
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| email			| Object			|  <p>Email address to receive the password reset token.</p>							|
-
-## Send email
-
-
-
-	POST /users/password/
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| email			| String			|  <p>Email address</p>							|
-| code			| String			|  <p>Code</p>							|
-
 # User
 
 ## Create user
@@ -479,7 +481,6 @@ curl --request PUT \
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>Master access_token.</p>							|
 | email			| String			|  <p>User's email.</p>							|
 | password			| String			|  <p>User's password.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
@@ -495,6 +496,14 @@ curl --request POST --url http://api.restfulnews.com/users \
 --header 'content-type: application/json' --data '{ \
 "email": "<email>", "password": "<password>", \
 "name": "<name>", "picture": "<picture link>"}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "token": <"bearer token">,
@@ -509,19 +518,17 @@ curl --request POST --url http://api.restfulnews.com/users \
  }
 }
 ```
-
 ## Delete user
 
 
 
 	DELETE /users/:id
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
+| Bearer			| String			|  <p>User access_token.</p>							|
 
 ### Examples
 
@@ -558,12 +565,11 @@ curl --request POST \
 
 	GET /users/me
 
-
-### Parameters
+### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
+| Bearer			| String			|  <p>User access_token.</p>							|
 
 ### Examples
 
@@ -574,6 +580,14 @@ curl --request GET \
 --url http://api.restfulnews.com/users/me \
 --header 'authorization: Bearer <Bearer Token>' \
 --header 'content-type: application/json'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id":"<user id>",
@@ -584,7 +598,6 @@ curl --request GET \
  "createdAt":"<created at date>"
 }
 ```
-
 ## Retrieve user
 
 
@@ -600,6 +613,14 @@ Curl Usage:
 curl --request GET --url http://api.restfulnews.com/users/<user id> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<user id>",
@@ -608,19 +629,22 @@ curl --request GET --url http://api.restfulnews.com/users/<user id> \
  "role": "<role>"
 }
 ```
-
 ## Retrieve users
 
 
 
 	GET /users
 
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Bearer			| String			|  <p>User access_token.</p>							|
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -636,6 +660,14 @@ curl --request GET \
 --url http://api.restfulnews.com/users \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 [
  {
@@ -656,6 +688,18 @@ curl --request GET \
  }
 ]
 ```
+## Send email
+
+
+
+	GET /users/reset-code
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| email			| Object			|  <p>Email address to receive the password reset token.</p>							|
 
 ## Update password
 
@@ -685,6 +729,14 @@ curl --request PUT \
  --header 'authorization: Bearer <Bearer Token>' \
  --header 'content-type: application/json' \
  --data '{"password":"<new password>}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<user id>",
@@ -695,6 +747,19 @@ curl --request PUT \
  "createdAt": "<created at date>"
 }
 ```
+## Send email
+
+
+
+	POST /users/password/
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| email			| String			|  <p>Email address</p>							|
+| code			| String			|  <p>Code</p>							|
 
 ## Update user
 
@@ -702,12 +767,16 @@ curl --request PUT \
 
 	PUT /users/:id
 
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Bearer			| String			|  <p>User access_token.</p>							|
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
 
@@ -721,6 +790,14 @@ curl --request PUT \
  --header 'authorization: Bearer <Bearer Token>' \
  --header 'content-type: application/json' \
  --data '{"name": "<name>", "picture": "<picture link>"}'
+```
+
+### Success Response
+
+Success-Response:
+
+```
+HTTP/1.1 200 OK
 
 {
  "id": "<user id>",
@@ -731,5 +808,4 @@ curl --request PUT \
  "createdAt": "<created at date>"
 }
 ```
-
 

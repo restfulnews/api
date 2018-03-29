@@ -52,7 +52,7 @@ router.post(
  * @api {post} /auth/google Authenticate with Google
  * @apiName AuthenticateGoogle
  * @apiGroup Auth
- * @apiParam {String} access_token Google user accessToken.
+ * @apiHeader {String} Bearer Google user accessToken.
  * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Invalid credentials.
