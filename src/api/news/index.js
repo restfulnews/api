@@ -13,7 +13,7 @@ const router = new Router();
  */
 
 /**
- * @api {get} /news Search for news articles
+ * @api {get} /news/search Search for news articles
  * @apiName SearchNews
  * @apiGroup News
  * @apiPerNews user
@@ -25,6 +25,32 @@ const router = new Router();
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/news/search?topics=<topics> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ *
+ *[
+ * {
+ *  "title": "<title>",
+ *  "publishedAt": "<published at date>",
+ *  "fingerprint": "<fingerprint id>",
+ *  "url": "<url>",
+ *  "abstract": "<abstract>",
+ *  "thumbnail": "<thumbnail>",
+ *  "source": "<source>"
+ * },
+ * {
+ *  "title": "<title>",
+ *  "publishedAt": "<published at date>",
+ *  "fingerprint": "<fingerprint id>",
+ *  "url": "<url>",
+ *  "abstract": "<abstract>",
+ *  "thumbnail": "<thumbnail>",
+ *  "source": "<source>"
+ * }
+ *]
  */
 router.get(
 	'/search',
@@ -46,6 +72,25 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request POST \
+ * --url http://localhost:9000/news \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ * --data '{"title": "<title>", "publishedAt": "<published at date>", \
+ *  "fingerprint": "<fingerprint id>", "url": "<url>", "abstract": "<abstract>", \
+ *  "thumbnail": "<thumbnail link>", "source": "<source>"}'
+ *
+ * {
+ *  "id": "<news article id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "url": "<url>",
+ *  "title": "<title>",
+ *  "source": "<source>",
+ *  "abstract": "<abstract>",
+ *  "thumbnail": "<thumbnail link>"
+ * }
  */
 router.post(
 	'/',
@@ -63,6 +108,34 @@ router.post(
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/news \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
+ *
+ * [
+ *  {
+ *   "id": "<news article id>",
+ *   "createdAt": "<created at date>",
+ *   "updatedAt": "<updated at date>",
+ *   "url": "<url>",
+ *   "title": "<title>",
+ *   "source": "<source>",
+ *   "abstract": "<abstract>",
+ *   "thumbnail": "<thumbnail link>"
+ *  },
+ *  {
+ *   "id": "<news article id>",
+ *   "createdAt": "<created at date>",
+ *   "updatedAt": "<updated at date>",
+ *   "url": "<url>",
+ *   "title": "<title>",
+ *   "source": "<source>",
+ *   "abstract": "<abstract>",
+ *   "thumbnail": "<thumbnail link>"
+ *  }
+ * ]
  */
 router.get(
 	'/',
@@ -81,6 +154,22 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/news/<news article id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
+ *
+ * {
+ *  "id": "<news article id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "url": "<url>",
+ *  "title": "<title>",
+ *  "source": "<source>",
+ *  "abstract": "<abstract>",
+ *  "thumbnail": "<thumbnail link>"
+ * }
  */
 router.get(
 	'/:id',
@@ -98,6 +187,24 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 News not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request PUT \
+ * --url http://localhost:9000/news/<news article id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ * --data '{"title":"<title>", "url":"<url", "source":"<source>", \
+ * "abstract":"<abstract>", "thumbnail":"<thumbnail>"}'
+ *
+ * {
+ *  "id": "<news article id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "url": "<url>",
+ *  "title": "<title>",
+ *  "source": "<source>",
+ *  "abstract": "<abstract>",
+ *  "thumbnail": "<thumbnail link>"
+ * }
  */
 router.put(
 	'/:id',
@@ -114,6 +221,11 @@ router.put(
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 News not found.
  * @apiError 401 admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request DELETE \
+ * --url http://localhost:9000/news/<news article id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
  */
 router.delete(
 	'/:id',

@@ -26,6 +26,19 @@ const router = new Router();
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request POST \
+ * --url http://localhost:9000/company \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ * --data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
+ *
+ * {
+ *  "id": "<company id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "name": "<name>"
+ * }
  */
 router.post(
 	'/',
@@ -43,6 +56,26 @@ router.post(
  * @apiSuccess {Object[]} company List of company.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/company \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ *
+ * [
+ *  {
+ *   "id": "<company id>",
+ *   "createdAt": "<created at date>",
+ *   "updatedAt": "<updated at date>",
+ *   "name": "<name>"
+ *  },
+ *  {
+ *   "id": "<company id>",
+ *   "createdAt": "<created at date>",
+ *   "updatedAt": "<updated at date>",
+ *   "name": "<name>"
+ *  }
+ * ]
  */
 router.get(
 	'/',
@@ -61,6 +94,18 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/company/<company id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ *
+ * {
+ *  "id": "<company id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "name": "<name>"
+ * }
  */
 router.get(
 	'/:id',
@@ -78,6 +123,19 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Company not found.
  * @apiError 401 user access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request PUT \
+ * --url http://localhost:9000/company/<company id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ * --data '{"name":"<name>", "market":"<market>"}'
+ *
+ * {
+ *  "id": "<company id>",
+ *  "createdAt": "<created at date>",
+ *  "updatedAt": "<updated at date>",
+ *  "name": "<name>"
+ * }
  */
 router.put(
 	'/:id',
@@ -94,6 +152,12 @@ router.put(
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Company not found.
  * @apiError 401 admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request DELETE \
+ * --url http://localhost:9000/company/5abcec87b8329b17e45b3e50 \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json' \
+ *
  */
 router.delete(
 	'/:id',

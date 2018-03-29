@@ -29,6 +29,30 @@ const {
  * @apiSuccess {Object[]} users List of users.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Admin access only.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/users \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
+ *
+ * [
+ *  {
+ *    "id": "<user id>",
+ *    "name": "<name>",
+ *    "picture": "<picture>",
+ *    "role": "<role>",
+ *    "email": "<email>",
+ *    "createdAt": "<created at date>"
+ *  },
+ *  {
+ *    "id": "<user id>",
+ *    "name": "<name>",
+ *    "picture": "<picture>",
+ *    "role": "<role>",
+ *    "email": "<email>",
+ *    "createdAt": "<created at date>"
+ *  }
+ * ]
  */
 router.get(
 	'/',
@@ -43,6 +67,11 @@ router.get(
  * @apiGroup User
  * @apiPermission public
  * @apiSuccess {Object} exists: true
+ * @apiExample {curl} Example Usage:
+ * curl --request POST \
+ * --url http://localhost:9000/users/<email> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
  */
 router.post(
 	'/email',
@@ -56,12 +85,29 @@ router.post(
  * @apiPermission user
  * @apiParam {String} access_token User access_token.
  * @apiSuccess {Object} user User's data.
+ * @apiExample
+ * @apiExample {curl} Example Usage:
+ * curl --request GET \
+ * --url http://localhost:9000/users/me \
+ * --header 'authorization: Bearer <Bearer Token>' \
+ * --header 'content-type: application/json'
+ *
+ * {
+ *  "id":"<user id>",
+ *  "name":"<name>",
+ *  "picture":"<picture link>",
+ *  "role":"<role>",
+ *  "email":"<email>",
+ *  "createdAt":"<created at date>"
+ * }
  */
 router.get(
 	'/me',
 	token({ required: true }),
 	showMe,
 );
+
+
 
 /**
  * @api {get} /users/:id Retrieve user
@@ -70,6 +116,17 @@ router.get(
  * @apiPermission public
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
+ * @apiExample {curl} Example Usage:
+ * curl --request GET --url http://localhost:9000/users/<user id> \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
+ *
+ * {
+ *  "id": "<user id>",
+ *  "name": "<name>",
+ *  "picture": "<picture link>",
+ *  "role": "<role>"
+ * }
  */
 router.get(
 	'/:id',
@@ -90,6 +147,24 @@ router.get(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Master access only.
  * @apiError 409 Email already registered.
+ * @apiExample {curl} Example Usage:
+ * curl --request POST --url http://localhost:9000/users \
+ * --header 'content-type: application/json' --data '{ \
+ * "email": "<email>", "password": "<password>", \
+ * "name": "<name>", "picture": "<picture link>"}'
+ *
+ * {
+ *  "token": <"bearer token">,
+ *  "user":
+ *  {
+ *    "id": "<user id>",
+ *    "name": "<name>",
+ *    "picture": "<picture link>",
+ *    "role": "<role>",
+ *    "email": "<email>",
+ *    "createdAt" : "<created at date>"
+ *  }
+ * }
  */
 router.post(
 	'/',
@@ -125,6 +200,21 @@ router.put(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Current user or admin access only.
  * @apiError 404 User not found.
+ * @apiExample {curl} Example Usage:
+ * curl --request PUT \
+ *  --url http://localhost:9000/users/<user_id>/update \
+ *  --header 'authorization: Bearer <Bearer Token>' \
+ *  --header 'content-type: application/json' \
+ *  --data '{"name": "<name>", "picture": "<picture link>"}'
+ *
+ * {
+ *  "id": "<user id>",
+ *  "name": "<name>",
+ *  "picture": "<picture link>",
+ *  "role": "<role>",
+ *  "email": "<email>",
+ *  "createdAt": "<created at date>"
+ * }
  */
 router.put(
 	'/:id',
@@ -142,6 +232,21 @@ router.put(
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 Current user access only.
  * @apiError 404 User not found.
+ * @apiExample {curl} Example Usage:
+ * curl --request PUT \
+ *  --url http://localhost:9000/users/<user_id>/password \
+ *  --header 'authorization: Bearer <Bearer Token>' \
+ *  --header 'content-type: application/json' \
+ *  --data '{"password":"<new password>}'
+ *
+ * {
+ *  "id": "<user id>",
+ *  "name": "<name>",
+ *  "picture": "<picture link>",
+ *  "role": "<role>",
+ *  "email": "<email>",
+ *  "createdAt": "<created at date>"
+ * }
  */
 router.put(
 	'/:id/password',
@@ -159,6 +264,11 @@ router.put(
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 401 Admin access only.
  * @apiError 404 User not found.
+ * @apiExample {curl} Example Usage:
+ * curl --request DELETE \
+ * --url 'http://localhost:9000/users/<user_id>' \
+ * --header 'authorization: Bearer <bearer token>' \
+ * --header 'content-type: application/json'
  */
 router.delete(
 	'/:id',

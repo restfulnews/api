@@ -49,6 +49,29 @@
 |---------|-----------|--------------------------------------|
 | Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl http://0.0.0.0:9000/auth -XPOST \
+-H 'Content-Type:application/json' \
+-d '{"email":"bobsagget@gmail.com","password":"bobsagget"}' \
+--oauth2-bearer "<bearer token>"
+
+{
+ "token":"<bearer token>",
+ "user": {
+   "id":"<user_id token>",
+   "name":"<name>",
+   "picture":"<display picture link>",
+   "role":"<role>",
+   "email":"<email>",
+   "createdAt":"<created at date>"
+ }
+}
+```
+
 ## Authenticate with Google
 
 
@@ -61,6 +84,29 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Google user accessToken.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl http://0.0.0.0:9000/auth -XPOST \
+-H 'Content-Type:application/json' \
+-d '{"token":"<Google OAuth Token>"}' \
+--oauth2-bearer "<bearer token>"
+
+{
+ "token":"<bearer token>",
+ "user": {
+     "id":"<user_id token>",
+     "name":"<name>",
+     "picture":"<display picture link>",
+     "role":"<role>",
+     "email":"<email>",
+     "createdAt":"<created at date>"
+ }
+}
+```
 
 # Company
 
@@ -77,6 +123,25 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>user access token.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request POST \
+--url http://localhost:9000/company \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+--data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
+
+{
+ "id": "<company id>",
+ "createdAt": "<created at date>",
+ "updatedAt": "<updated at date>",
+ "name": "<name>"
+}
+```
+
 ## Delete Company
 
 
@@ -89,6 +154,17 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl --request DELETE \
+--url http://localhost:9000/company/5abcec87b8329b17e45b3e50 \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+```
 
 ## Retrieve company
 
@@ -108,6 +184,32 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request GET \
+--url http://localhost:9000/company \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+
+[
+ {
+  "id": "<company id>",
+  "createdAt": "<created at date>",
+  "updatedAt": "<updated at date>",
+  "name": "<name>"
+ },
+ {
+  "id": "<company id>",
+  "createdAt": "<created at date>",
+  "updatedAt": "<updated at date>",
+  "name": "<name>"
+ }
+]
+```
+
 ## Update Company
 
 
@@ -120,6 +222,25 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>user access token.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl --request PUT \
+--url http://localhost:9000/company/<company id> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+--data '{"name":"<name>", "market":"<market>"}'
+
+{
+ "id": "<company id>",
+ "createdAt": "<created at date>",
+ "updatedAt": "<updated at date>",
+ "name": "<name>"
+}
+```
 
 # News
 
@@ -136,6 +257,31 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>user access token.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request POST \
+--url http://localhost:9000/news \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+--data '{"title": "<title>", "publishedAt": "<published at date>", \
+ "fingerprint": "<fingerprint id>", "url": "<url>", "abstract": "<abstract>", \
+ "thumbnail": "<thumbnail link>", "source": "<source>"}'
+
+{
+ "id": "<news article id>",
+ "createdAt": "<created at date>",
+ "updatedAt": "<updated at date>",
+ "url": "<url>",
+ "title": "<title>",
+ "source": "<source>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail link>"
+}
+```
+
 ## Delete News
 
 
@@ -148,6 +294,17 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>admin access token.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl --request DELETE \
+--url http://localhost:9000/news/<news article id> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+```
 
 ## Retrieve News
 
@@ -162,11 +319,33 @@
 |---------|-----------|--------------------------------------|
 | BearerToken			| String			|  <p>user access token.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request GET \
+--url http://localhost:9000/news/<news article id> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+
+{
+ "id": "<news article id>",
+ "createdAt": "<created at date>",
+ "updatedAt": "<updated at date>",
+ "url": "<url>",
+ "title": "<title>",
+ "source": "<source>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail link>"
+}
+```
+
 ## Search for news articles
 
 
 
-	GET /news
+	GET /news/search
 
 
 ### Parameters
@@ -183,6 +362,25 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl -i "http://api.restfulnews.com/news/search?topics=trump"
+[
+{
+ "title": "Vanessa Trump files for divorce from Donald Trump Jr – reports",
+ "publishedAt": "2018-03-15T22:15:21.000Z",
+ "fingerprint": "3ea5f0018d26b76c6b6a15c45b3f33dc",
+ "url": "https://www.theguardian.com/us-news/2018/mar/15/trump-jr-divorce-wife-vanessa-reports",
+ "abstract": "Vanessa Trump, the wife of Donald Trump Jr, filed for divorce on Thursday, according to reports. Vanessa Trump filed for an uncontested proceeding, “meaning she’s not expecting a legal battle over custody of the couple’s five children or their assets”, the ...",
+ "thumbnail": "https://media.guim.co.uk/c9af0e2a4935c39037a6a9b98f6d3769ef4e1428/0_47_2724_1635/500.jpg",
+ "source": "guardian"
+}
+]
+```
+
 ## Update News
 
 
@@ -195,6 +393,30 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>user access token.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl --request PUT \
+--url http://localhost:9000/news/<news article id> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+--data '{"title":"<title>", "url":"<url", "source":"<source>", \
+"abstract":"<abstract>", "thumbnail":"<thumbnail>"}'
+
+{
+ "id": "<news article id>",
+ "createdAt": "<created at date>",
+ "updatedAt": "<updated at date>",
+ "url": "<url>",
+ "title": "<title>",
+ "source": "<source>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail link>"
+}
+```
 
 # PasswordReset
 
@@ -245,6 +467,30 @@
 | picture			| String			| **optional** <p>User's picture.</p>							|
 | role			| String			| **optional** <p>User's picture.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request POST --url http://localhost:9000/users \
+--header 'content-type: application/json' --data '{ \
+"email": "<email>", "password": "<password>", \
+"name": "<name>", "picture": "<picture link>"}
+
+{
+ "token": <"bearer token">,
+ "user":
+ {
+   "id": "<user id>",
+   "name": "<name>",
+   "picture": "<picture link>",
+   "role": "<role>",
+   "email": "<email>",
+   "createdAt" : "<created at date>"
+ }
+}
+```
+
 ## Delete user
 
 
@@ -258,12 +504,34 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>User access_token.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request DELETE \
+--url 'http://localhost:9000/users/<user_id>' \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+```
+
 ## Test if user exists
 
 
 
 	POST /email/:email
 
+
+### Examples
+
+Example Usage:
+
+```
+curl --request POST \
+--url http://localhost:9000/users/<email> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+```
 
 ## Retrieve current user
 
@@ -278,12 +546,50 @@
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>User access_token.</p>							|
 
+### Examples
+
+@apiExample {curl} Example Usage:
+
+```
+@apiExample {curl} Example Usage:
+curl --request GET \
+--url http://localhost:9000/users/me \
+--header 'authorization: Bearer <Bearer Token>' \
+--header 'content-type: application/json'
+
+{
+ "id":"<user id>",
+ "name":"<name>",
+ "picture":"<picture link>",
+ "role":"<role>",
+ "email":"<email>",
+ "createdAt":"<created at date>"
+}
+```
+
 ## Retrieve user
 
 
 
 	GET /users/:id
 
+
+### Examples
+
+Example Usage:
+
+```
+curl --request GET --url http://localhost:9000/users/<user id> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+
+{
+ "id": "<user id>",
+ "name": "<name>",
+ "picture": "<picture link>",
+ "role": "<role>"
+}
+```
 
 ## Retrieve users
 
@@ -303,6 +609,36 @@
 | sort			| String[]			| **optional** <p>Order of returned items.</p>							|
 | fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request GET \
+--url http://localhost:9000/users \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json'
+
+[
+ {
+   "id": "<user id>",
+   "name": "<name>",
+   "picture": "<picture>",
+   "role": "<role>",
+   "email": "<email>",
+   "createdAt": "<created at date>"
+ },
+ {
+   "id": "<user id>",
+   "name": "<name>",
+   "picture": "<picture>",
+   "role": "<role>",
+   "email": "<email>",
+   "createdAt": "<created at date>"
+ }
+]
+```
+
 ## Update password
 
 
@@ -321,6 +657,27 @@
 |---------|-----------|--------------------------------------|
 | password			| String			|  <p>User's new password.</p>							|
 
+### Examples
+
+Example Usage:
+
+```
+curl --request PUT \
+ --url http://localhost:9000/users/<user_id>/password \
+ --header 'authorization: Bearer <Bearer Token>' \
+ --header 'content-type: application/json' \
+ --data '{"password":"<new password>}'
+
+{
+ "id": "<user id>",
+ "name": "<name>",
+ "picture": "<picture link>",
+ "role": "<role>",
+ "email": "<email>",
+ "createdAt": "<created at date>"
+}
+```
+
 ## Update user
 
 
@@ -335,5 +692,26 @@
 | access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
+
+### Examples
+
+Example Usage:
+
+```
+curl --request PUT \
+ --url http://localhost:9000/users/<user_id>/update \
+ --header 'authorization: Bearer <Bearer Token>' \
+ --header 'content-type: application/json' \
+ --data '{"name": "<name>", "picture": "<picture link>"}'
+
+{
+ "id": "<user id>",
+ "name": "<name>",
+ "picture": "<picture link>",
+ "role": "<role>",
+ "email": "<email>",
+ "createdAt": "<created at date>"
+}
+```
 
 
