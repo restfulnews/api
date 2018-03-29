@@ -367,16 +367,29 @@ curl --request GET \
 Example Usage:
 
 ```
-curl -i "http://api.restfulnews.com/news/search?topics=trump"
+curl --request GET \
+--url http://localhost:9000/news/search?topics=<topics> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+
 [
 {
- "title": "Vanessa Trump files for divorce from Donald Trump Jr – reports",
- "publishedAt": "2018-03-15T22:15:21.000Z",
- "fingerprint": "3ea5f0018d26b76c6b6a15c45b3f33dc",
- "url": "https://www.theguardian.com/us-news/2018/mar/15/trump-jr-divorce-wife-vanessa-reports",
- "abstract": "Vanessa Trump, the wife of Donald Trump Jr, filed for divorce on Thursday, according to reports. Vanessa Trump filed for an uncontested proceeding, “meaning she’s not expecting a legal battle over custody of the couple’s five children or their assets”, the ...",
- "thumbnail": "https://media.guim.co.uk/c9af0e2a4935c39037a6a9b98f6d3769ef4e1428/0_47_2724_1635/500.jpg",
- "source": "guardian"
+ "title": "<title>",
+ "publishedAt": "<published at date>",
+ "fingerprint": "<fingerprint id>",
+ "url": "<url>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail>",
+ "source": "<source>"
+},
+{
+ "title": "<title>",
+ "publishedAt": "<published at date>",
+ "fingerprint": "<fingerprint id>",
+ "url": "<url>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail>",
+ "source": "<source>"
 }
 ]
 ```
@@ -475,7 +488,7 @@ Example Usage:
 curl --request POST --url http://localhost:9000/users \
 --header 'content-type: application/json' --data '{ \
 "email": "<email>", "password": "<password>", \
-"name": "<name>", "picture": "<picture link>"}
+"name": "<name>", "picture": "<picture link>"}'
 
 {
  "token": <"bearer token">,
