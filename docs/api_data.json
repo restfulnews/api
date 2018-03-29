@@ -899,7 +899,7 @@
   {
     "type": "get",
     "url": "/news/search",
-    "title": "Search for news articles",
+    "title": "1. Search for news articles",
     "name": "SearchNews",
     "group": "News",
     "parameter": {
@@ -1011,7 +1011,7 @@
     "examples": [
       {
         "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/search?topics=<topics> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n}\n]",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>>&end_date=<iso_time> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n}\n]",
         "type": "curl"
       }
     ],

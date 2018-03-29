@@ -16,7 +16,7 @@ Open source news API for quants.
 	- [Create News](#create-news)
 	- [Delete News](#delete-news)
 	- [Retrieve News](#retrieve-news)
-	- [Search for news articles](#search-for-news-articles)
+	- [1. Search for news articles](#1.-search-for-news-articles)
 	- [Update News](#update-news)
 	
 - [User](#user)
@@ -372,7 +372,7 @@ curl --request GET \
 }
 ```
 
-## Search for news articles
+## 1. Search for news articles
 
 
 
@@ -399,7 +399,7 @@ Curl Usage:
 
 ```
 curl --request GET \
---url http://api.restfulnews.com/news/search?topics=<topics> \
+--url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>>&end_date=<iso_time> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 
