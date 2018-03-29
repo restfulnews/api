@@ -66,7 +66,7 @@ router.get(
  * @api {post} /news Create News
  * @apiName CreateNews
  * @apiGroup News
- * @apiPerNews user
+ * @apiPerNews admin
  * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} News News's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
@@ -94,7 +94,7 @@ router.get(
  */
 router.post(
 	'/',
-	token({ required: true }),
+	token({ required: true, roles: ['admin'] }),
 	create,
 );
 
@@ -211,7 +211,7 @@ router.get(
  */
 router.put(
 	'/:id',
-	token({ required: true }),
+	token({ required: true, roles: ['admin'] }),
 	update,
 );
 
