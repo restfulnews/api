@@ -373,6 +373,11 @@ curl --request GET \
 
 	GET /news/search
 
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Bearer			| String			|  <p>user access token.</p>							|
 
 ### Parameters
 

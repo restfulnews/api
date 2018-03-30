@@ -902,6 +902,19 @@ define({ "api": [
     "title": "1. Search for news articles",
     "name": "SearchNews",
     "group": "News",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Bearer",
+            "description": "<p>user access token.</p>"
+          }
+        ]
+      }
+    },
     "parameter": {
       "fields": {
         "Parameter": [
