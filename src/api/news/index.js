@@ -17,6 +17,7 @@ const router = new Router();
  * @apiName SearchNews
  * @apiGroup News
  * @apiPerNews user
+ * @apiHeader {String} Bearer user access token.
  * @apiParam {String} topics News topics split by a comma(,).
  * @apiParam {Date.toISOString} start_date Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
  * @apiParam {Date.toISOString} end_date Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
