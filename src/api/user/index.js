@@ -138,12 +138,11 @@ router.get(
  * @apiGroup User
  * @apiParam {String} email User's email.
  * @apiParam {String{6..}} password User's password.
- * @apiParam {String} [name] User's name.
+ * @apiParam {String} name User's name.
  * @apiParam {String} [picture] User's picture.
  * @apiParam {String=user,admin} [role=user] User's picture.
  * @apiSuccess (Sucess 201) {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 Master access only.
  * @apiError 409 Email already registered.
  * @apiExample {curl} Curl Usage:
  * curl --request POST --url http://api.restfulnews.com/users \

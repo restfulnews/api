@@ -1,11 +1,13 @@
-const { asyncHandler } = require('../../utils');
+const { asyncHandler, removeEmptyParams } = require('../../utils');
 const Searcher = require('../../services/searcher');
+const { responseWrapper } = require('../../services/response');
 
 /**
 * CUSTOM FUNCTIONS
 */
 
 exports.search = asyncHandler(async ({ query, user }, res) => {
-	const results = await Searcher(query, user);
-	res.json(results);
+	const cleanQuery = removeEmptyParams(query);
+	const results = await Searcher(cleanQuery, user);
+	res.json(responseWrapper(results));
 }, 'Unable to retrieve news articles.');

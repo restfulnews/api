@@ -6,19 +6,27 @@ const {
 
 const router = new Router();
 
+
+router.post(
+	'/',
+	sendResetLinkIfRequired,
+	json(),
+	login,
+);
+
 /**
- * @api {post} /auth Authenticate
+ * @api {post} /auth/basic Basic Authentication
  * @apiName Authenticate
  * @apiGroup Auth
- * @apiHeader {String} Authorization Basic authorization with email and password.
- * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
+ * @apiParam {String} email User's Email address
+ * @apiParam {String} password User's password
+ * @apiSuccess (Success 201) {String} token User Bearer `token` to be passed to other requests.
  * @apiSuccess (Success 201) {Object} user Current user's data.
  * @apiError 401 Master access only or invalid credentials.
  * @apiExample {curl} Curl Usage:
  * curl http://api.restfulnews.com/auth -XPOST \
  * -H 'Content-Type:application/json' \
  * -d '{"email":"<email>","password":"<password>"}' \
- * --oauth2-bearer "<bearer token>"
  *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
@@ -35,13 +43,6 @@ const router = new Router();
  *  }
  * }
  */
-router.post(
-	'/',
-	sendResetLinkIfRequired,
-	json(),
-	login,
-);
-
 router.post(
 	'/basic',
 	basic(),

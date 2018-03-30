@@ -29,6 +29,7 @@ const baseConfig = {
 	root: path.join(__dirname, '..'),
 	port: process.env.PORT || 9000,
 	ip: process.env.IP || '0.0.0.0',
+	maintainer: 'Team Wombat',
 	noReplyEmail: 'noreply@restfulnews.com',
 	enquiriesEmail: 'enquiries@restfulnews.com',
 	adminEmail: 'admin@restfulnews.com',

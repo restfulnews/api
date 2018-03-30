@@ -1,4 +1,6 @@
 const { APIError } = require('../../utils');
+const { version, maintainer } = require('../../config');
+
 
 exports.success = (res, status) => (entity) => {
 	if (entity) return res.status(status || 200).json(entity);
@@ -17,3 +19,10 @@ exports.authorOrAdmin = (res, user, userField) => (entity) => {
 	if (isAuthor || isAdmin) return entity;
 	return res.status(401).end();
 };
+
+exports.responseWrapper = (data, status = 200) => ({
+	status,
+	version,
+	maintainer,
+	data,
+});

@@ -1,4 +1,5 @@
-const { Router } = require('express');
+const { Router, static } = require('express');
+const path = require("path");
 const user = require('./user');
 const auth = require('./auth');
 const config = require('../config');
@@ -37,6 +38,7 @@ router.use('/auth', auth);
 router.use('/search', search);
 router.use('/news', news);
 router.use('/debug', debug);
+router.use('/docs', static(path.join(__dirname, '../../docs/')));
 router.get('/', (req, res) =>
 	res.status(200).json({
 		env: config.env,

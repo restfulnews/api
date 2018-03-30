@@ -9,6 +9,7 @@ const { abstract, fingerprint } = require('./helper');
 
 const index = async ({
 	topics,
+	companyids,
 	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)).toISOString(),
 	end_date = new Date().toISOString(),
 }, apiKey) => {
@@ -21,9 +22,11 @@ const index = async ({
 		toDate: end_date,
 	};
 
+	const keywords = companyids ? `${topics},${companyids}` : topics;
+
 	const api = new Guardian(apiKey, false);
 
-	await api.content.search(topics, apiParams)
+	await api.content.search(keywords, apiParams)
 		.then(async (response) => {
 			const responseObject = JSON.parse(response.body);
 			const { results } = responseObject.response;

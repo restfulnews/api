@@ -3,7 +3,7 @@
 Open source news API for quants.
 
 - [Auth](#auth)
-	- [Authenticate](#authenticate)
+	- [Basic Authentication](#basic-authentication)
 	- [Authenticate with Google](#authenticate-with-google)
 	
 - [News](#news)
@@ -31,17 +31,19 @@ Open source news API for quants.
 
 # Auth
 
-## Authenticate
+## Basic Authentication
 
 
 
-	POST /auth
+	POST /auth/basic
 
-### Headers
+
+### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| Authorization			| String			|  <p>Basic authorization with email and password.</p>							|
+| email			| String			|  <p>User's Email address</p>							|
+| password			| String			|  <p>User's password</p>							|
 
 ### Examples
 
@@ -51,7 +53,6 @@ Curl Usage:
 curl http://api.restfulnews.com/auth -XPOST \
 -H 'Content-Type:application/json' \
 -d '{"email":"<email>","password":"<password>"}' \
---oauth2-bearer "<bearer token>"
 ```
 
 ### Success Response
@@ -285,7 +286,8 @@ HTTP/1.1 200 OK
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| topics			| String			|  <p>News topics split by a comma(,).</p>							|
+| topics			| String			|  <p>News topics split separated by a comma(,).</p>							|
+| companyids			| String			|  <p>List of company id's separated by a comma(,).</p>							|
 | start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
 | end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
 
@@ -295,7 +297,7 @@ Curl Usage:
 
 ```
 curl --request GET \
---url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
+--url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time>&companyids=<list of company id's> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 
@@ -312,6 +314,9 @@ curl --request GET \
 ...
 }
 ]
+
+Note: the `fingerprint` property is used to distinguish news articles, and is
+generated from a hash of the news content.
 ```
 
 # User
@@ -329,7 +334,7 @@ curl --request GET \
 |---------|-----------|--------------------------------------|
 | email			| String			|  <p>User's email.</p>							|
 | password			| String			|  <p>User's password.</p>							|
-| name			| String			| **optional** <p>User's name.</p>							|
+| name			| String			|  <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
 | role			| String			| **optional** <p>User's picture.</p>							|
 

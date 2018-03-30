@@ -1,19 +1,26 @@
 [
   {
     "type": "post",
-    "url": "/auth",
-    "title": "Authenticate",
+    "url": "/auth/basic",
+    "title": "Basic Authentication",
     "name": "Authenticate",
     "group": "Auth",
-    "header": {
+    "parameter": {
       "fields": {
-        "Header": [
+        "Parameter": [
           {
-            "group": "Header",
+            "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Authorization",
-            "description": "<p>Basic authorization with email and password.</p>"
+            "field": "email",
+            "description": "<p>User's Email address</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User's password</p>"
           }
         ]
       }
@@ -26,7 +33,7 @@
             "type": "String",
             "optional": false,
             "field": "token",
-            "description": "<p>User <code>access_token</code> to be passed to other requests.</p>"
+            "description": "<p>User Bearer <code>token</code> to be passed to other requests.</p>"
           },
           {
             "group": "Success 201",
@@ -60,18 +67,13 @@
     "examples": [
       {
         "title": "Curl Usage:",
-        "content": "curl http://api.restfulnews.com/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"email\":\"<email>\",\"password\":\"<password>\"}' \\\n--oauth2-bearer \"<bearer token>\"",
+        "content": "curl http://api.restfulnews.com/auth -XPOST \\\n-H 'Content-Type:application/json' \\\n-d '{\"email\":\"<email>\",\"password\":\"<password>\"}' \\",
         "type": "curl"
       }
     ],
     "version": "0.0.0",
     "filename": "src/api/auth/index.js",
-    "groupTitle": "Auth",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/auth"
-      }
-    ]
+    "groupTitle": "Auth"
   },
   {
     "type": "post",
@@ -213,12 +215,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/news/index.js",
-    "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news"
-      }
-    ]
+    "groupTitle": "News"
   },
   {
     "type": "delete",
@@ -278,12 +275,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/news/index.js",
-    "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news/:id"
-      }
-    ]
+    "groupTitle": "News"
   },
   {
     "type": "get",
@@ -346,11 +338,6 @@
     "version": "0.0.0",
     "filename": "src/api/news/index.js",
     "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news"
-      }
-    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -464,12 +451,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/news/index.js",
-    "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news/:id"
-      }
-    ]
+    "groupTitle": "News"
   },
   {
     "type": "put",
@@ -544,12 +526,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/news/index.js",
-    "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news/:id"
-      }
-    ]
+    "groupTitle": "News"
   },
   {
     "type": "get",
@@ -578,7 +555,14 @@
             "type": "String",
             "optional": false,
             "field": "topics",
-            "description": "<p>News topics split by a comma(,).</p>"
+            "description": "<p>News topics split separated by a comma(,).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "companyids",
+            "description": "<p>List of company id's separated by a comma(,).</p>"
           },
           {
             "group": "Parameter",
@@ -626,18 +610,13 @@
     "examples": [
       {
         "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n...\n}\n]",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time>&companyids=<list of company id's> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n...\n}\n]\n\nNote: the `fingerprint` property is used to distinguish news articles, and is\ngenerated from a hash of the news content.",
         "type": "curl"
       }
     ],
     "version": "0.0.0",
     "filename": "src/api/search/index.js",
-    "groupTitle": "Search",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/search"
-      }
-    ]
+    "groupTitle": "Search"
   },
   {
     "type": "post",
@@ -666,7 +645,7 @@
           {
             "group": "Parameter",
             "type": "String",
-            "optional": true,
+            "optional": false,
             "field": "name",
             "description": "<p>User's name.</p>"
           },
@@ -725,12 +704,6 @@
           {
             "group": "Error 4xx",
             "optional": false,
-            "field": "401",
-            "description": "<p>Master access only.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
             "field": "409",
             "description": "<p>Email already registered.</p>"
           }
@@ -746,12 +719,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "delete",
@@ -818,12 +786,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/:id"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "post",
@@ -858,12 +821,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/email/:email"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "get",
@@ -920,12 +878,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/me"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "get",
@@ -979,12 +932,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/:id"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "get",
@@ -1061,11 +1009,6 @@
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
     "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users"
-      }
-    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -1159,12 +1102,7 @@
     },
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/reset-code"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "put",
@@ -1253,12 +1191,7 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/:id/password"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "post",
@@ -1313,12 +1246,7 @@
     },
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/password/"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "put",
@@ -1420,11 +1348,6 @@
     ],
     "version": "0.0.0",
     "filename": "src/api/user/index.js",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/users/:id"
-      }
-    ]
+    "groupTitle": "User"
   }
 ]

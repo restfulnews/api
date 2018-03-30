@@ -101,10 +101,19 @@ function getShortCode(length = 6) {
 	return result;
 }
 
+function removeEmptyParams(body) {
+	const newBody = Object.assign({}, body);
+	Object.keys(body).forEach((key) => {
+		if (body[key] === '') delete newBody[key];
+	});
+	return newBody;
+}
+
 module.exports = {
 	asyncHandler,
 	errorHandler,
 	APIError,
 	getShortCode,
 	ErrorsArray,
+	removeEmptyParams,
 };

@@ -4,6 +4,7 @@ const { success, notFound } = require('../../services/response/');
 const {
 	APIError, asyncHandler,
 	getShortCode, ErrorsArray,
+	removeEmptyParams,
 } = require('../../utils');
 const User = require('./model');
 const sendMail = require('../../services/sendgrid');
@@ -30,7 +31,8 @@ exports.showMe = ({ user }, res) =>
 exports.create = asyncHandler(async (req, res, next) => {
 	// Server side password check
 	// zxcvbn is 1mb and may not always load in time on the client
-	const { body } = req;
+	let { body } = req;
+	body = await removeEmptyParams(body);
 	const errors = new ErrorsArray();
 	const zxcvbnResult = zxcvbn(body.password, [body.email, body.name]);
 	if (zxcvbnResult.score < 1) errors.add('password.insecure', 'password', 'The password you\'ve chosen is too insecure.');
@@ -39,6 +41,7 @@ exports.create = asyncHandler(async (req, res, next) => {
 	if (body.role) errors.add('user.role', 'role', 'You\'re forbidden to set the user role');
 	if (errors.length > 0) throw new APIError(400, errors);
 	await User.create(body)
+		.then(next())
 		.catch((err) => {
 			if (err.name === 'MongoError' && err.code === 11000) {
 				errors.add('auth.alreadyExists', 'email');
@@ -46,8 +49,6 @@ exports.create = asyncHandler(async (req, res, next) => {
 			}
 			throw new APIError(500, 'Error creating user', err);
 		});
-	// Return JWT in next middleware
-	return next();
 }, 'Error creating new user');
 
 exports.update = ({ body, params, user }, res, next) =>
