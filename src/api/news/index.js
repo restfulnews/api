@@ -27,7 +27,7 @@ const router = new Router();
  * @apiError 401 admin access only.
  * @apiExample {curl} Curl Usage:
  * curl --request GET \
- * --url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>>&end_date=<iso_time> \
+ * --url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
  * --header 'authorization: Bearer <bearer token>' \
  * --header 'content-type: application/json' \
  *
@@ -41,14 +41,7 @@ const router = new Router();
  *  "thumbnail": "<thumbnail>",
  *  "source": "<source>"
  * },
- * {
- *  "title": "<title>",
- *  "publishedAt": "<published at date>",
- *  "fingerprint": "<fingerprint id>",
- *  "url": "<url>",
- *  "abstract": "<abstract>",
- *  "thumbnail": "<thumbnail>",
- *  "source": "<source>"
+ * ...
  * }
  *]
  */
@@ -125,16 +118,7 @@ router.post(
  *   "abstract": "<abstract>",
  *   "thumbnail": "<thumbnail link>"
  *  },
- *  {
- *   "id": "<news article id>",
- *   "createdAt": "<created at date>",
- *   "updatedAt": "<updated at date>",
- *   "url": "<url>",
- *   "title": "<title>",
- *   "source": "<source>",
- *   "abstract": "<abstract>",
- *   "thumbnail": "<thumbnail link>"
- *  }
+ *  ...
  * ]
  */
 router.get(

@@ -17,7 +17,7 @@ const router = new Router();
  * @apiExample {curl} Curl Usage:
  * curl http://api.restfulnews.com/auth -XPOST \
  * -H 'Content-Type:application/json' \
- * -d '{"email":"bobsagget@gmail.com","password":"bobsagget"}' \
+ * -d '{"email":"<email>","password":"<password>"}' \
  * --oauth2-bearer "<bearer token>"
  *
  * @apiSuccessExample Success-Response:

@@ -36,7 +36,7 @@ exports.create = asyncHandler(async (req, res, next) => {
 	if (zxcvbnResult.score < 1) errors.add('password.insecure', 'password', 'The password you\'ve chosen is too insecure.');
 	if (body.password.length < 8) errors.add('password.tooShort', 'password');
 	if (typeof body.email === 'string' && !isEmail(body.email)) errors.add('invalidEmail', 'email', 'The email you\'ve chosen is invalid.');
-	//if (body.role) errors.add('user.role', 'role', 'You\'re forbidden to set the user role');
+	if (body.role) errors.add('user.role', 'role', 'You\'re forbidden to set the user role');
 	if (errors.length > 0) throw new APIError(400, errors);
 	await User.create(body)
 		.catch((err) => {

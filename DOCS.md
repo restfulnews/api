@@ -54,7 +54,7 @@ Curl Usage:
 ```
 curl http://api.restfulnews.com/auth -XPOST \
 -H 'Content-Type:application/json' \
--d '{"email":"bobsagget@gmail.com","password":"bobsagget"}' \
+-d '{"email":"<email>","password":"<password>"}' \
 --oauth2-bearer "<bearer token>"
 ```
 
@@ -229,12 +229,7 @@ HTTP/1.1 200 OK
   "updatedAt": "<updated at date>",
   "name": "<name>"
  },
- {
-  "id": "<company id>",
-  "createdAt": "<created at date>",
-  "updatedAt": "<updated at date>",
-  "name": "<name>"
- }
+ ...
 ]
 ```
 ## Update Company
@@ -399,7 +394,7 @@ Curl Usage:
 
 ```
 curl --request GET \
---url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>>&end_date=<iso_time> \
+--url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
 --header 'authorization: Bearer <bearer token>' \
 --header 'content-type: application/json' \
 
@@ -413,14 +408,7 @@ curl --request GET \
  "thumbnail": "<thumbnail>",
  "source": "<source>"
 },
-{
- "title": "<title>",
- "publishedAt": "<published at date>",
- "fingerprint": "<fingerprint id>",
- "url": "<url>",
- "abstract": "<abstract>",
- "thumbnail": "<thumbnail>",
- "source": "<source>"
+...
 }
 ]
 ```
@@ -493,8 +481,8 @@ Curl Usage:
 
 ```
 curl --request POST --url http://api.restfulnews.com/users \
---header 'content-type: application/json' --data '{ \
-"email": "<email>", "password": "<password>", \
+--header 'content-type: application/json' \
+--data '{ "email": "<email>", "password": "<password>", \
 "name": "<name>", "picture": "<picture link>"}'
 ```
 
@@ -678,14 +666,7 @@ HTTP/1.1 200 OK
    "email": "<email>",
    "createdAt": "<created at date>"
  },
- {
-   "id": "<user id>",
-   "name": "<name>",
-   "picture": "<picture>",
-   "role": "<role>",
-   "email": "<email>",
-   "createdAt": "<created at date>"
- }
+ ...
 ]
 ```
 ## Send email

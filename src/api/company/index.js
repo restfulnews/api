@@ -75,12 +75,7 @@ router.post(
  *   "updatedAt": "<updated at date>",
  *   "name": "<name>"
  *  },
- *  {
- *   "id": "<company id>",
- *   "createdAt": "<created at date>",
- *   "updatedAt": "<updated at date>",
- *   "name": "<name>"
- *  }
+ *  ...
  * ]
  */
 router.get(

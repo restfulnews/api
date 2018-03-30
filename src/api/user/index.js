@@ -47,14 +47,7 @@ const {
  *    "email": "<email>",
  *    "createdAt": "<created at date>"
  *  },
- *  {
- *    "id": "<user id>",
- *    "name": "<name>",
- *    "picture": "<picture>",
- *    "role": "<role>",
- *    "email": "<email>",
- *    "createdAt": "<created at date>"
- *  }
+ *  ...
  * ]
  */
 router.get(
@@ -154,8 +147,8 @@ router.get(
  * @apiError 409 Email already registered.
  * @apiExample {curl} Curl Usage:
  * curl --request POST --url http://api.restfulnews.com/users \
- * --header 'content-type: application/json' --data '{ \
- * "email": "<email>", "password": "<password>", \
+ * --header 'content-type: application/json' \
+ * --data '{ "email": "<email>", "password": "<password>", \
  * "name": "<name>", "picture": "<picture link>"}'
  *
  * @apiSuccessExample Success-Response:
