@@ -13,8 +13,8 @@
 		"order": [
 			"User",
 			"Auth",
-			"News",
-			"Company"
+			"Search",
+			"News"
 		]
 	},
   "scripts": {

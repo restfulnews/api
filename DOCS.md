@@ -6,18 +6,14 @@ Open source news API for quants.
 	- [Authenticate](#authenticate)
 	- [Authenticate with Google](#authenticate-with-google)
 	
-- [Company](#company)
-	- [Create Company](#create-company)
-	- [Delete Company](#delete-company)
-	- [Retrieve company](#retrieve-company)
-	- [Update Company](#update-company)
-	
 - [News](#news)
 	- [Create News](#create-news)
 	- [Delete News](#delete-news)
-	- [Retrieve News](#retrieve-news)
-	- [1. Search for news articles](#1.-search-for-news-articles)
+	- [Retrieve news](#retrieve-news)
 	- [Update News](#update-news)
+	
+- [Search](#search)
+	- [Search for news articles (main)](#search-for-news-articles-(main))
 	
 - [User](#user)
 	- [Create user](#create-user)
@@ -119,157 +115,6 @@ HTTP/1.1 200 OK
  }
 }
 ```
-# Company
-
-## Create Company
-
-
-
-	POST /company
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Bearer			| String			|  <p>user access token.</p>							|
-
-### Examples
-
-Curl Usage:
-
-```
-curl --request POST \
---url http://api.restfulnews.com/company \
---header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json' \
---data '{"name":"<name>", "ticker":"<ticket>", "market":"<market>"}'
-```
-
-### Success Response
-
-Success-Response:
-
-```
-HTTP/1.1 200 OK
-
-{
- "id": "<company id>",
- "createdAt": "<created at date>",
- "updatedAt": "<updated at date>",
- "name": "<name>"
-}
-```
-## Delete Company
-
-
-
-	DELETE /company/:id
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Bearer			| String			|  <p>admin access token.</p>							|
-
-### Examples
-
-Curl Usage:
-
-```
-curl --request DELETE \
---url http://api.restfulnews.com/company/5abcec87b8329b17e45b3e50 \
---header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json' \
-```
-
-## Retrieve company
-
-
-
-	GET /company
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Bearer			| String			|  <p>admin access token.</p>							|
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
-
-### Examples
-
-Curl Usage:
-
-```
-curl --request GET \
---url http://api.restfulnews.com/company \
---header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json' \
-```
-
-### Success Response
-
-Success-Response:
-
-```
-HTTP/1.1 200 OK
-
-[
- {
-  "id": "<company id>",
-  "createdAt": "<created at date>",
-  "updatedAt": "<updated at date>",
-  "name": "<name>"
- },
- ...
-]
-```
-## Update Company
-
-
-
-	PUT /company/:id
-
-### Headers
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| Bearer			| String			|  <p>user access token.</p>							|
-
-### Examples
-
-Curl Usage:
-
-```
-curl --request PUT \
---url http://api.restfulnews.com/company/<company id> \
---header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json' \
---data '{"name":"<name>", "market":"<market>"}'
-```
-
-### Success Response
-
-Success-Response:
-
-```
-HTTP/1.1 200 OK
-
-{
- "id": "<company id>",
- "createdAt": "<created at date>",
- "updatedAt": "<updated at date>",
- "name": "<name>"
-}
-```
 # News
 
 ## Create News
@@ -332,61 +177,22 @@ curl --request DELETE \
 --header 'content-type: application/json'
 ```
 
-## Retrieve News
+## Retrieve news
 
 
 
-	GET /news/:id
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| BearerToken			| String			|  <p>user access token.</p>							|
-
-### Examples
-
-Curl Usage:
-
-```
-curl --request GET \
---url http://api.restfulnews.com/news/<news article id> \
---header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json'
-
-{
- "id": "<news article id>",
- "createdAt": "<created at date>",
- "updatedAt": "<updated at date>",
- "url": "<url>",
- "title": "<title>",
- "source": "<source>",
- "abstract": "<abstract>",
- "thumbnail": "<thumbnail link>"
-}
-```
-
-## 1. Search for news articles
-
-
-
-	GET /news/search
+	GET /news
 
 ### Headers
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| Bearer			| String			|  <p>user access token.</p>							|
+| Bearer			| String			|  <p>admin access token.</p>							|
 
 ### Parameters
 
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
-| topics			| String			|  <p>News topics split by a comma(,).</p>							|
-| start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
-| end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
-| BearerToken			| String			|  <p>user access token.</p>							|
 | q			| String			| **optional** <p>Query to search.</p>							|
 | page			| Number			| **optional** <p>Page number.</p>							|
 | limit			| Number			| **optional** <p>Amount of returned items.</p>							|
@@ -399,22 +205,22 @@ Curl Usage:
 
 ```
 curl --request GET \
---url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
+--url http://api.restfulnews.com/news \
 --header 'authorization: Bearer <bearer token>' \
---header 'content-type: application/json' \
+--header 'content-type: application/json'
 
 [
-{
- "title": "<title>",
- "publishedAt": "<published at date>",
- "fingerprint": "<fingerprint id>",
- "url": "<url>",
- "abstract": "<abstract>",
- "thumbnail": "<thumbnail>",
- "source": "<source>"
-},
-...
-}
+ {
+  "id": "<news article id>",
+  "createdAt": "<created at date>",
+  "updatedAt": "<updated at date>",
+  "url": "<url>",
+  "title": "<title>",
+  "source": "<source>",
+  "abstract": "<abstract>",
+  "thumbnail": "<thumbnail link>"
+ },
+ ...
 ]
 ```
 
@@ -461,6 +267,53 @@ HTTP/1.1 200 OK
  "thumbnail": "<thumbnail link>"
 }
 ```
+# Search
+
+## Search for news articles (main)
+
+
+
+	GET /search
+
+### Headers
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| Bearer			| String			|  <p>user access token.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| topics			| String			|  <p>News topics split by a comma(,).</p>							|
+| start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+
+### Examples
+
+Curl Usage:
+
+```
+curl --request GET \
+--url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
+--header 'authorization: Bearer <bearer token>' \
+--header 'content-type: application/json' \
+
+[
+{
+ "title": "<title>",
+ "publishedAt": "<published at date>",
+ "fingerprint": "<fingerprint id>",
+ "url": "<url>",
+ "abstract": "<abstract>",
+ "thumbnail": "<thumbnail>",
+ "source": "<source>"
+},
+...
+}
+]
+```
+
 # User
 
 ## Create user

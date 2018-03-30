@@ -8,13 +8,13 @@ define({
   "order": [
     "User",
     "Auth",
-    "News",
-    "Company"
+    "Search",
+    "News"
   ],
   "apidoc": "0.2.0",
   "generator": {
     "name": "apidoc",
-    "time": "2018-03-30T01:07:51.843Z",
+    "time": "2018-03-30T01:43:39.213Z",
     "url": "http://apidocjs.com",
     "version": "0.16.1"
   }

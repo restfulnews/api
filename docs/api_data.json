@@ -149,431 +149,6 @@
   },
   {
     "type": "post",
-    "url": "/company",
-    "title": "Create Company",
-    "name": "CreateEntity",
-    "group": "Company",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>user access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "Company",
-            "description": "<p>Company's data.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>Company not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>user access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request POST \\\n--url http://api.restfulnews.com/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"ticker\":\"<ticket>\", \"market\":\"<market>\"}'",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/company/index.js",
-    "groupTitle": "Company",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/company"
-      }
-    ]
-  },
-  {
-    "type": "delete",
-    "url": "/company/:id",
-    "title": "Delete Company",
-    "name": "DeleteEntity",
-    "group": "Company",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>admin access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 204": [
-          {
-            "group": "Success 204",
-            "optional": false,
-            "field": "204",
-            "description": "<p>No Content.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>Company not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>admin access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request DELETE \\\n--url http://api.restfulnews.com/company/5abcec87b8329b17e45b3e50 \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/company/index.js",
-    "groupTitle": "Company",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/company/:id"
-      }
-    ]
-  },
-  {
-    "type": "get",
-    "url": "/company",
-    "title": "Retrieve company",
-    "name": "RetrieveEntity",
-    "group": "Company",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>admin access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "company",
-            "description": "<p>List of company.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n[\n {\n  \"id\": \"<company id>\",\n  \"createdAt\": \"<created at date>\",\n  \"updatedAt\": \"<updated at date>\",\n  \"name\": \"<name>\"\n },\n ...\n]",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>admin access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/company \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/company/index.js",
-    "groupTitle": "Company",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/company"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": true,
-            "field": "q",
-            "description": "<p>Query to search.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "size": "1..30",
-            "optional": true,
-            "field": "page",
-            "defaultValue": "1",
-            "description": "<p>Page number.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "size": "1..100",
-            "optional": true,
-            "field": "limit",
-            "defaultValue": "30",
-            "description": "<p>Amount of returned items.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String[]",
-            "optional": true,
-            "field": "sort",
-            "defaultValue": "-createdAt",
-            "description": "<p>Order of returned items.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String[]",
-            "optional": true,
-            "field": "fields",
-            "description": "<p>Fields to be returned.</p>"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "get",
-    "url": "/company/:id",
-    "title": "Retrieve Company",
-    "name": "RetrieveEntity",
-    "group": "Company",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>user access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "Company",
-            "description": "<p>Company's data.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>Company not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>user access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/company/index.js",
-    "groupTitle": "Company",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/company/:id"
-      }
-    ]
-  },
-  {
-    "type": "put",
-    "url": "/company/:id",
-    "title": "Update Company",
-    "name": "UpdateEntity",
-    "group": "Company",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>user access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "Company",
-            "description": "<p>Company's data.</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n{\n \"id\": \"<company id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"name\": \"<name>\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>Company not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>user access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request PUT \\\n--url http://api.restfulnews.com/company/<company id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n--data '{\"name\":\"<name>\", \"market\":\"<market>\"}'",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/company/index.js",
-    "groupTitle": "Company",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/company/:id"
-      }
-    ]
-  },
-  {
-    "type": "post",
     "url": "/news",
     "title": "Create News",
     "name": "CreateNews",
@@ -712,79 +287,6 @@
   },
   {
     "type": "get",
-    "url": "/news/:id",
-    "title": "Retrieve News",
-    "name": "RetrieveNews",
-    "group": "News",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "BearerToken",
-            "description": "<p>user access token.</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "News",
-            "description": "<p>News's data.</p>"
-          }
-        ]
-      }
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "Object",
-            "optional": false,
-            "field": "400",
-            "description": "<p>Some parameters may contain invalid values.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "404",
-            "description": "<p>News not found.</p>"
-          },
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "401",
-            "description": "<p>user access only.</p>"
-          }
-        ]
-      }
-    },
-    "examples": [
-      {
-        "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "src/api/news/index.js",
-    "groupTitle": "News",
-    "sampleRequest": [
-      {
-        "url": "http://api.restfulnews.com/news/:id"
-      }
-    ]
-  },
-  {
-    "type": "get",
     "url": "/news",
     "title": "Retrieve news",
     "name": "RetrieveNews",
@@ -898,23 +400,10 @@
   },
   {
     "type": "get",
-    "url": "/news/search",
-    "title": "1. Search for news articles",
-    "name": "SearchNews",
+    "url": "/news/:id",
+    "title": "Retrieve News",
+    "name": "RetrieveNews",
     "group": "News",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Bearer",
-            "description": "<p>user access token.</p>"
-          }
-        ]
-      }
-    },
     "parameter": {
       "fields": {
         "Parameter": [
@@ -922,69 +411,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "topics",
-            "description": "<p>News topics split by a comma(,).</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Date.toISOString",
-            "optional": false,
-            "field": "start_date",
-            "description": "<p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Date.toISOString",
-            "optional": false,
-            "field": "end_date",
-            "description": "<p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "BearerToken",
             "description": "<p>user access token.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": true,
-            "field": "q",
-            "description": "<p>Query to search.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "size": "1..30",
-            "optional": true,
-            "field": "page",
-            "defaultValue": "1",
-            "description": "<p>Page number.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "size": "1..100",
-            "optional": true,
-            "field": "limit",
-            "defaultValue": "30",
-            "description": "<p>Amount of returned items.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String[]",
-            "optional": true,
-            "field": "sort",
-            "defaultValue": "-createdAt",
-            "description": "<p>Order of returned items.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String[]",
-            "optional": true,
-            "field": "fields",
-            "description": "<p>Fields to be returned.</p>"
           }
         ]
       }
@@ -994,10 +422,10 @@
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object[]",
+            "type": "Object",
             "optional": false,
-            "field": "news",
-            "description": "<p>List of news.</p>"
+            "field": "News",
+            "description": "<p>News's data.</p>"
           }
         ]
       }
@@ -1015,8 +443,14 @@
           {
             "group": "Error 4xx",
             "optional": false,
+            "field": "404",
+            "description": "<p>News not found.</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
             "field": "401",
-            "description": "<p>admin access only.</p>"
+            "description": "<p>user access only.</p>"
           }
         ]
       }
@@ -1024,7 +458,7 @@
     "examples": [
       {
         "title": "Curl Usage:",
-        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n...\n}\n]",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/news/<news article id> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json'\n\n{\n \"id\": \"<news article id>\",\n \"createdAt\": \"<created at date>\",\n \"updatedAt\": \"<updated at date>\",\n \"url\": \"<url>\",\n \"title\": \"<title>\",\n \"source\": \"<source>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail link>\"\n}",
         "type": "curl"
       }
     ],
@@ -1033,7 +467,7 @@
     "groupTitle": "News",
     "sampleRequest": [
       {
-        "url": "http://api.restfulnews.com/news/search"
+        "url": "http://api.restfulnews.com/news/:id"
       }
     ]
   },
@@ -1114,6 +548,94 @@
     "sampleRequest": [
       {
         "url": "http://api.restfulnews.com/news/:id"
+      }
+    ]
+  },
+  {
+    "type": "get",
+    "url": "/search",
+    "title": "Search for news articles (main)",
+    "name": "SearchNews",
+    "group": "Search",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Bearer",
+            "description": "<p>user access token.</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "topics",
+            "description": "<p>News topics split by a comma(,).</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date.toISOString",
+            "optional": false,
+            "field": "start_date",
+            "description": "<p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Date.toISOString",
+            "optional": false,
+            "field": "end_date",
+            "description": "<p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "news",
+            "description": "<p>List of news.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "Object",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Some parameters may contain invalid values.</p>"
+          }
+        ]
+      }
+    },
+    "examples": [
+      {
+        "title": "Curl Usage:",
+        "content": "curl --request GET \\\n--url http://api.restfulnews.com/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \\\n--header 'authorization: Bearer <bearer token>' \\\n--header 'content-type: application/json' \\\n\n[\n{\n \"title\": \"<title>\",\n \"publishedAt\": \"<published at date>\",\n \"fingerprint\": \"<fingerprint id>\",\n \"url\": \"<url>\",\n \"abstract\": \"<abstract>\",\n \"thumbnail\": \"<thumbnail>\",\n \"source\": \"<source>\"\n},\n...\n}\n]",
+        "type": "curl"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "src/api/search/index.js",
+    "groupTitle": "Search",
+    "sampleRequest": [
+      {
+        "url": "http://api.restfulnews.com/search"
       }
     ]
   },

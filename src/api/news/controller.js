@@ -1,18 +1,12 @@
 const _ = require('lodash');
-// const config = require('../../config');
 const { asyncHandler } = require('../../utils');
 const { success, notFound } = require('../../services/response/');
 const News = require('./model');
-const Searcher = require('../../services/searcher');
 
 /**
 * CUSTOM FUNCTIONS
 */
 
-exports.search = asyncHandler(async ({ query, user }, res) => {
-	const results = await Searcher(query, user);
-	res.json(results);
-}, 'Unable to retrieve news articles.');
 
 /**
 * GENERIC FUNCTIONS (do not modify)

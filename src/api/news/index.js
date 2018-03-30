@@ -12,45 +12,6 @@ const router = new Router();
  * CUSTOM ROUTES
  */
 
-/**
- * @api {get} /news/search 1. Search for news articles
- * @apiName SearchNews
- * @apiGroup News
- * @apiPerNews user
- * @apiHeader {String} Bearer user access token.
- * @apiParam {String} topics News topics split by a comma(,).
- * @apiParam {Date.toISOString} start_date Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
- * @apiParam {Date.toISOString} end_date Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
- * @apiParam {String} BearerToken user access token.
- * @apiUse listParams
- * @apiSuccess {Object[]} news List of news.
- * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 admin access only.
- * @apiExample {curl} Curl Usage:
- * curl --request GET \
- * --url http://api.restfulnews.com/news/search?topics=<topics>&start_date=<iso_time>&end_date=<iso_time> \
- * --header 'authorization: Bearer <bearer token>' \
- * --header 'content-type: application/json' \
- *
- *[
- * {
- *  "title": "<title>",
- *  "publishedAt": "<published at date>",
- *  "fingerprint": "<fingerprint id>",
- *  "url": "<url>",
- *  "abstract": "<abstract>",
- *  "thumbnail": "<thumbnail>",
- *  "source": "<source>"
- * },
- * ...
- * }
- *]
- */
-router.get(
-	'/search',
-	token({ required: true }),
-	search,
-);
 
 /**
 	* GENERIC ROUTES (do not modify these)

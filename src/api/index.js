@@ -3,7 +3,7 @@ const user = require('./user');
 const auth = require('./auth');
 const config = require('../config');
 const debug = require('./debug');
-const company = require('./company');
+const search = require('./search');
 const news = require('./news');
 const { errorHandler } = require('../utils');
 
@@ -34,7 +34,7 @@ const router = new Router();
  */
 router.use('/users', user);
 router.use('/auth', auth);
-router.use('/company', company);
+router.use('/search', search);
 router.use('/news', news);
 router.use('/debug', debug);
 router.get('/', (req, res) =>
