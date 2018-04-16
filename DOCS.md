@@ -290,6 +290,7 @@ HTTP/1.1 200 OK
 | companyids			| String			|  <p>List of company id's separated by a comma(,).</p>							|
 | start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
 | end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| limit			| Number			| **optional** <p>Number of returned items.</p>							|
 
 ### Examples
 

@@ -2,22 +2,22 @@
   "name": "restfulnews",
   "version": "0.0.1",
   "main": "src",
-	"private": true,
-	"apidoc": {
-		"name": "RESTfulNews API",
-		"version": "0.1.4",
-		"description": "Open source news API for quants.",
-		"title": "Docs | RESTfulNews API",
-		"order": [
-			"User",
-			"Auth",
-			"Search",
-			"News"
-		],
-		"template" : {
-			"withCompare" : false
-		}
-	},
+  "private": true,
+  "apidoc": {
+    "name": "RESTfulNews API",
+    "version": "0.1.4",
+    "description": "Open source news API for quants.",
+    "title": "Docs | RESTfulNews API",
+    "order": [
+      "User",
+      "Auth",
+      "Search",
+      "News"
+    ],
+    "template": {
+      "withCompare": false
+    }
+  },
   "scripts": {
     "test": "tape src/**/*.spec.js | pino | tap-spec",
     "dev": "cross-env NODE_ENV=development nodemon -i \"*.test.js\" . | pino -c",

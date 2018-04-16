@@ -20,6 +20,7 @@ const router = new Router();
  * @apiParam {String} companyids List of company id's separated by a comma(,).
  * @apiParam {Date.toISOString} start_date Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
  * @apiParam {Date.toISOString} end_date Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
+ * @apiParam {Number} [limit=10] Number of returned items.
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiExample {curl} Curl Usage:

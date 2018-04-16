@@ -12,6 +12,7 @@ const index = async ({
 	companyids,
 	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)).toISOString(),
 	end_date = new Date().toISOString(),
+	limit = 2,
 }, apiKey) => {
 	let allResults = [];
 
@@ -26,21 +27,27 @@ const index = async ({
 
 	const api = new Guardian(apiKey, false);
 
+	let i;
+	let maxArticles = limit;
+
 	await api.content.search(keywords, apiParams)
 		.then(async (response) => {
 			const responseObject = JSON.parse(response.body);
 			const { results } = responseObject.response;
 			if (!results) return [];
 			// restructure news list results since to conform with our News Model
-			allResults = await results.map(result => ({
-				title: result.webTitle,
-				publishedAt: new Date(result.webPublicationDate),
-				fingerprint: fingerprint(result.webTitle, 'guardian'),
-				url: result.webUrl,
-				abstract: abstract(result.fields.body),
-				thumbnail: result.fields.thumbnail,
-				source: 'guardian',
-			}));
+			if (results.length < maxArticles) maxArticles = results.length;
+			for (i = 0; i < maxArticles; i += 1) {
+				allResults[i] = ({
+					title: results[i].webTitle,
+					publishedAt: new Date(results[i].webPublicationDate),
+					fingerprint: fingerprint(results[i].webTitle, 'guardian'),
+					url: results[i].webUrl,
+					abstract: abstract(results[i].fields.body),
+					thumbnail: results[i].fields.thumbnail,
+					source: 'guardian',
+				});
+			}
 		});
 
 	return allResults;
