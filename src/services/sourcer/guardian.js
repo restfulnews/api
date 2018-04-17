@@ -15,7 +15,7 @@ const index = async ({
 }, apiKey) => {
 	let allResults = [];
 
-	const apiParams = {
+	const params = {
 		showFields: ['body', 'thumbnail'],
 		orderBy: 'relevance',
 		fromDate: start_date,
@@ -26,7 +26,7 @@ const index = async ({
 
 	const api = new Guardian(apiKey, false);
 
-	await api.content.search(keywords, apiParams)
+	await api.content.search(keywords, params)
 		.then(async (response) => {
 			const responseObject = JSON.parse(response.body);
 			const { results } = responseObject.response;
