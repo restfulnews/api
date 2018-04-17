@@ -42,7 +42,6 @@ const index = async ({
 				source: 'guardian',
 			}));
 		});
-
 	return allResults;
 };
 

@@ -22,3 +22,4 @@ mongoose.connect(config.mongo.uri, {
 	});
 
 module.exports = app;
+

@@ -3,7 +3,7 @@ const { nytKey } = require('../../config');
 
 const {
 	guardian,
-	nyt
+	nyt,
 } = require('../sourcer');
 
 /**
@@ -14,7 +14,7 @@ const {
 
 const index = async (query, user) => {
 	let results = [];
-	//results = results.concat(await guardian(query, guardianKey));
+	results = results.concat(await guardian(query, guardianKey));
 	results = results.concat(await nyt(query, nytKey));
 	return results;
 };
