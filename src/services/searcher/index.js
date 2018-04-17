@@ -1,5 +1,4 @@
-const { guardianKey } = require('../../config');
-const { nytKey } = require('../../config');
+const { guardianKey, nytKey } = require('../../config');
 
 const {
 	guardian,
