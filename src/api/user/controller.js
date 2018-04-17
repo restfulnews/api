@@ -35,8 +35,8 @@ exports.create = asyncHandler(async (req, res, next) => {
 	body = await removeEmptyParams(body);
 	const errors = new ErrorsArray();
 	const zxcvbnResult = zxcvbn(body.password, [body.email, body.name]);
-	if (zxcvbnResult.score < 1) errors.add('password.insecure', 'password', 'The password you\'ve chosen is too insecure.');
-	if (body.password.length < 8) errors.add('password.tooShort', 'password');
+	if (zxcvbnResult.score < 1) errors.add('password.insecure', 'password', 'The password you\'ve chosen is too insecure. Make sure it contains at least one lowercase and one uppercase letter and a number');
+	if (body.password.length < 8) errors.add('password.tooShort', 'password', 'The password you \'ve created is too short, it needs to be longer than 8 characters.');
 	if (typeof body.email === 'string' && !isEmail(body.email)) errors.add('invalidEmail', 'email', 'The email you\'ve chosen is invalid.');
 	if (body.role) errors.add('user.role', 'role', 'You\'re forbidden to set the user role');
 	if (errors.length > 0) throw new APIError(400, errors);
@@ -44,7 +44,7 @@ exports.create = asyncHandler(async (req, res, next) => {
 		.then(next())
 		.catch((err) => {
 			if (err.name === 'MongoError' && err.code === 11000) {
-				errors.add('auth.alreadyExists', 'email');
+				errors.add('auth.alreadyExists', 'email', 'This email already exists, please use the auth routes to recover the token.');
 				throw new APIError(409, errors);
 			}
 			throw new APIError(500, 'Error creating user', err);
