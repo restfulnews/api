@@ -31,24 +31,29 @@ exports.showMe = ({ user }, res) =>
 exports.create = asyncHandler(async (req, res, next) => {
 	// Server side password check
 	// zxcvbn is 1mb and may not always load in time on the client
-	let { body } = req;
-	body = await removeEmptyParams(body);
+	const { body } = req;
 	const errors = new ErrorsArray();
+	if (body.role) throw new APIError(400, 'Users are not allowed to change the role.');
+	if (!body.password) throw new APIError(400, 'No password provided');
 	const zxcvbnResult = zxcvbn(body.password, [body.email, body.name]);
 	if (zxcvbnResult.score < 1) errors.add('password.insecure', 'password', 'The password you\'ve chosen is too insecure.');
 	if (body.password.length < 8) errors.add('password.tooShort', 'password');
 	if (typeof body.email === 'string' && !isEmail(body.email)) errors.add('invalidEmail', 'email', 'The email you\'ve chosen is invalid.');
-	if (body.role) errors.add('user.role', 'role', 'You\'re forbidden to set the user role');
 	if (errors.length > 0) throw new APIError(400, errors);
-	await User.create(body)
-		.then(next())
+	await User.create({
+		name: body.name,
+		email: body.email,
+		password: body.password,
+	})
 		.catch((err) => {
-			if (err.name === 'MongoError' && err.code === 11000) {
+			if (err.code === 11000) {
 				errors.add('auth.alreadyExists', 'email');
 				throw new APIError(409, errors);
 			}
 			throw new APIError(500, 'Error creating user', err);
 		});
+	// Return JWT in next middleware
+	return next();
 }, 'Error creating new user');
 
 exports.update = ({ body, params, user }, res, next) =>
