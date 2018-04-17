@@ -1,14 +1,20 @@
 # [Changelog](http://keepachangelog.com/)
 All releases will be documented in this file.
 
-## [0.3.1] 2018-04-28 API Restructure
+## [0.4.1] 2018-04-17 API Improvements
+- Added New York Times as an additional news source
+- Added documentation of python module to website
+- Improved python module to include user auth
+
+
+## [0.3.1] 2018-03-28 API Restructure
 - Removed company route (redundant)
 - Added time attribute to search route
 - Improved search results organisation service
 - Improved Authentication
 - Improved Documentation
 
-## [0.2.1] 2018-04-26 Adding Documentation Skeleton
+## [0.2.1] 2018-03-26 Adding Documentation Skeleton
 - Added searcher service
 - Added guardian service
 
