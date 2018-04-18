@@ -9,7 +9,7 @@ const index = async ({
 	end_date,
 }, apiKey) => {
 	let allResults = [];
-	console.log(start_date);
+
 	const params = {
 		'api-key': apiKey,
 		q: topics,
