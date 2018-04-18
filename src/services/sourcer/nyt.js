@@ -5,17 +5,17 @@ const { abstract, fingerprint } = require('./helper');
 const index = async ({
 	topics,
 	companyids,
-	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)),
-	end_date = new Date(),
+	start_date,
+	end_date,
 }, apiKey) => {
 	let allResults = [];
-
+	console.log(start_date);
 	const params = {
 		'api-key': apiKey,
 		q: topics,
 		fq: companyids,
-		begin_date: fecha.format(start_date, 'YYYYMMDD'),
-		end_date: fecha.format(end_date, 'YYYYMMDD'),
+		begin_date: fecha.format(new Date(start_date), 'YYYYMMDD'),
+		end_date: fecha.format(new Date(end_date), 'YYYYMMDD'),
 		fl: 'web_url, pub_date, snippet, headline, keywords, multimedia',
 	};
 

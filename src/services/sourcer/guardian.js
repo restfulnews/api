@@ -10,8 +10,8 @@ const { abstract, fingerprint } = require('./helper');
 const index = async ({
 	topics,
 	companyids,
-	start_date = new Date(new Date().setFullYear(new Date().getFullYear() - 5)).toISOString(),
-	end_date = new Date().toISOString(),
+	start_date,
+	end_date,
 }, apiKey) => {
 	let allResults = [];
 
