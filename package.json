@@ -57,6 +57,7 @@
     "express": "^4.13.4",
     "fecha": "^2.3.3",
     "google-auth-library": "^0.12.0",
+    "google-finance": "^0.1.11",
     "guardian-js": "^1.0.11",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.13.1",

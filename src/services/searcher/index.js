@@ -1,5 +1,5 @@
 const { guardianKey, nytKey } = require('../../config');
-
+const { checkTickers } = require('../company');
 const {
 	guardian,
 	nyt,
@@ -13,6 +13,7 @@ const {
 
 const index = async (query, user) => {
 	let results = [];
+	checkTickers();
 	results = results.concat(await guardian(query, guardianKey));
 	results = results.concat(await nyt(query, nytKey));
 	const firstArticle = (parseInt(query.page, 10) - 1) * parseInt(query.limit, 10);

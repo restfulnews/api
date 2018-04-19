@@ -40,7 +40,7 @@ exports.create = asyncHandler(async (req, res, next) => {
 	if (body.password.length < 8) errors.add('password.tooShort', 'password');
 	if (typeof body.email === 'string' && !isEmail(body.email)) errors.add('invalidEmail', 'email', 'The email you\'ve chosen is invalid.');
 	if (errors.length > 0) throw new APIError(400, errors);
-	await User.insert({
+	await User.create({
 		name: body.name,
 		email: body.email,
 		password: body.password,
