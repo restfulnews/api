@@ -15,7 +15,7 @@ const index = async (query, user) => {
 	let results = [];
 	results = results.concat(await guardian(query, guardianKey));
 	results = results.concat(await nyt(query, nytKey));
-	return results;
+	return results.slice(0, query.max_results);
 };
 
 module.exports = index;
