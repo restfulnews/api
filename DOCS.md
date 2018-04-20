@@ -33,7 +33,7 @@ Open source news API for quants.
 
 ## Basic Authentication
 
-
+<p>All requests to our API require authentication. The Bearer token must be provided as part of header for every request, using the authorisation Bearer variable. This token is retrieved after a successful login with an e-mail and password using Basic Authentication.</p>
 
 	POST /auth/basic
 
@@ -76,7 +76,7 @@ HTTP/1.1 200 OK
 ```
 ## Authenticate with Google
 
-
+<p>All requests to our API require authentication. The Bearer token must be provided as part of header for every request, using the authorisation Bearer variable. This token is retrieved after a successful login with using Google Authentication.</p>
 
 	POST /auth/google
 
@@ -120,7 +120,7 @@ HTTP/1.1 200 OK
 
 ## Create News
 
-
+<p>Creates a News object.</p>
 
 	POST /news
 
@@ -129,6 +129,17 @@ HTTP/1.1 200 OK
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | Bearer			| String			|  <p>user access token.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| title			| String			|  <p>Title of the news article.</p>							|
+| abstract			| String			|  <p>Abstract of the news article.</p>							|
+| url			| String			| **optional** <p>URL to the news article.</p>							|
+| source			| String			| **optional** <p>URL Source to the news article.</p>							|
+| thumbnail			| String			| **optional** <p>URL Source to the news article thumbnail.</p>							|
+| publishedAt			| Date.toISOString			| **optional** <p>Pulished date of the news article. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
 
 ### Examples
 
@@ -157,7 +168,7 @@ curl --request POST \
 
 ## Delete News
 
-
+<p>Deletes an existing News object.</p>
 
 	DELETE /news/:id
 
@@ -180,7 +191,7 @@ curl --request DELETE \
 
 ## Retrieve news
 
-
+<p>Retrieves a list of News objects.</p>
 
 	GET /news
 
@@ -227,7 +238,7 @@ curl --request GET \
 
 ## Update News
 
-
+<p>Updates an existing News object with new information.</p>
 
 	PUT /news/:id
 
@@ -236,6 +247,16 @@ curl --request GET \
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | Bearer			| String			|  <p>user access token.</p>							|
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| title			| String			|  <p>Title of the news article.</p>							|
+| abstract			| String			|  <p>Abstract of the news article.</p>							|
+| url			| String			| **optional** <p>URL to the news article.</p>							|
+| source			| String			| **optional** <p>URL Source to the news article.</p>							|
+| thumbnail			| String			| **optional** <p>URL Source to the news article thumbnail.</p>							|
 
 ### Examples
 
@@ -272,7 +293,7 @@ HTTP/1.1 200 OK
 
 ## Search for news articles (main)
 
-
+<p>Search for news articles from our news sources based which can be filtered by Topic, Company, Pulished Date.</p>
 
 	GET /search
 
@@ -288,8 +309,10 @@ HTTP/1.1 200 OK
 |---------|-----------|--------------------------------------|
 | topics			| String			|  <p>News topics split separated by a comma(,).</p>							|
 | companyids			| String			|  <p>List of company id's separated by a comma(,).</p>							|
-| start_date			| Date.toISOString			|  <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
-| end_date			| Date.toISOString			|  <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| start_date			| Date.toISOString			| **optional** <p>Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| end_date			| Date.toISOString			| **optional** <p>Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)</p>							|
+| limit			| Integer			| **optional** <p>Maximum news articles to display per page.</p>							|
+| page			| Integer			| **optional** <p>Page number of results.</p>							|
 
 ### Examples
 
@@ -323,7 +346,7 @@ generated from a hash of the news content.
 
 ## Create user
 
-
+<p>Creates a user with the information provided in the parameters.</p>
 
 	POST /users
 
@@ -336,7 +359,7 @@ generated from a hash of the news content.
 | password			| String			|  <p>User's password.</p>							|
 | name			| String			|  <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
-| role			| String			| **optional** <p>User's picture.</p>							|
+| role			| String			| **optional** <p>User's role.</p>							|
 
 ### Examples
 
@@ -371,7 +394,7 @@ HTTP/1.1 200 OK
 ```
 ## Delete user
 
-
+<p>Deletes an existing user with the specified User ID.</p>
 
 	DELETE /users/:id
 
@@ -394,7 +417,7 @@ curl --request DELETE \
 
 ## Test if user exists
 
-
+<p>Checks if a user exists with the specified email.</p>
 
 	POST /email/:email
 
@@ -412,7 +435,7 @@ curl --request POST \
 
 ## Retrieve current user
 
-
+<p>Gets the current user who is logged in.</p>
 
 	GET /users/me
 
@@ -451,7 +474,7 @@ HTTP/1.1 200 OK
 ```
 ## Retrieve user
 
-
+<p>Retrieves a user's data when given the User ID.</p>
 
 	GET /users/:id
 
@@ -482,7 +505,7 @@ HTTP/1.1 200 OK
 ```
 ## Retrieve users
 
-
+<p>Gets a list of all users.</p>
 
 	GET /users
 
@@ -534,7 +557,7 @@ HTTP/1.1 200 OK
 ```
 ## Send email
 
-
+<p>Sends a password reset code to the specified E-mail address.</p>
 
 	GET /users/reset-code
 
@@ -547,7 +570,7 @@ HTTP/1.1 200 OK
 
 ## Update password
 
-
+<p>Updates an existing User's password.</p>
 
 	PUT /users/:id/password
 
@@ -607,7 +630,7 @@ HTTP/1.1 200 OK
 
 ## Update user
 
-
+<p>Updates an existing User's information based on the parameters entered.</p>
 
 	PUT /users/:id
 

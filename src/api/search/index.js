@@ -14,12 +14,15 @@ const router = new Router();
  * @api {get} /search Search for news articles (main)
  * @apiName SearchNews
  * @apiGroup Search
+ * @apiDescription Search for news articles from our news sources based which can be filtered by Topic, Company, Pulished Date.
  * @apiPerNews user
  * @apiHeader {String} Bearer user access token.
  * @apiParam {String} topics News topics split separated by a comma(,).
  * @apiParam {String} companyids List of company id's separated by a comma(,).
- * @apiParam {Date.toISOString} start_date Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
- * @apiParam {Date.toISOString} end_date Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
+ * @apiParam {Date.toISOString} [start_date=date_5_years_ago] Pulished date interval start. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
+ * @apiParam {Date.toISOString} [end_date=current_date] Pulished date interval end. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
+ * @apiParam {Integer} [limit=50] Maximum news articles to display per page.
+ * @apiParam {Integer} [page=1] Page number of results.
  * @apiSuccess {Object[]} news List of news.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiExample {curl} Curl Usage:

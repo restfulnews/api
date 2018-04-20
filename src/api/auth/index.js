@@ -10,6 +10,7 @@ const router = new Router();
  * @api {post} /auth/basic Basic Authentication
  * @apiName Authenticate
  * @apiGroup Auth
+ * @apiDescription All requests to our API require authentication. The Bearer token must be provided as part of header for every request, using the authorisation Bearer variable. This token is retrieved after a successful login with an e-mail and password using Basic Authentication.
  * @apiParam {String} email User's Email address
  * @apiParam {String} password User's password
  * @apiSuccess (Success 201) {String} token User Bearer `token` to be passed to other requests.
@@ -52,6 +53,7 @@ router.post(
  * @api {post} /auth/google Authenticate with Google
  * @apiName AuthenticateGoogle
  * @apiGroup Auth
+ * @apiDescription All requests to our API require authentication. The Bearer token must be provided as part of header for every request, using the authorisation Bearer variable. This token is retrieved after a successful login with using Google Authentication.
  * @apiHeader {String} Bearer Google user accessToken.
  * @apiSuccess (Success 201) {String} token User `access_token` to be passed to other requests.
  * @apiSuccess (Success 201) {Object} user Current user's data.
