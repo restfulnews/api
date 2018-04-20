@@ -1,6 +1,7 @@
 const { asyncHandler, removeEmptyParams } = require('../../utils');
 const Searcher = require('../../services/searcher');
 const { responseWrapper } = require('../../services/response');
+const ComapnySearcher = require('../../services/companysearcher');
 
 /**
 * CUSTOM FUNCTIONS
@@ -28,7 +29,30 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	if (!cleanQuery.topics) warnings.push('Topics not specified.');
 	if (!cleanQuery.companyids) warnings.push('Company id\'s not specified.');
 	if (!cleanQuery.page || cleanQuery.page <= 0) cleanQuery.page = 1;
+
+	const comps = cleanQuery.companyids.split(',');
+
+	async function getCompanies(companies) {
+		const pArray = companies.map(async (company) => {
+			// make it lower case and strip whitespace
+			const companyStr = company.toLowerCase().replace(/^\s+|\s+$/g, '');
+			let response = '';
+			if (companyStr.includes('.ax')) {
+				// take the part before ax
+				response = await ComapnySearcher(companyStr.split('.')[0]);
+			} else {
+				response = company;
+			}
+			return response;
+		});
+		const users = await Promise.all(pArray);
+		return users;
+	}
+	const newcomps = await getCompanies(comps);
+	cleanQuery.companyids = newcomps.join(',');
+
 	try {
+		console.log(cleanQuery);
 		results = await Searcher(cleanQuery, user);
 	} catch (err) {
 		warnings.push(err);
