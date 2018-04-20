@@ -12,7 +12,7 @@ const index = async (query) => {
                 const words = line.split(',');
                 if (words.length > 2) {
                     if (words[1].replace(/["]+/g, '').toLowerCase() === companycode.toLowerCase()) {
-                        result =  words[0].replace(/["]+/g, '').toLowerCase();
+                        result =  words[0].replace(/["]+/g, '').toLowerCase().split(' ')[0];
                         break;
                     }
                 }
