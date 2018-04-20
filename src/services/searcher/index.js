@@ -1,5 +1,4 @@
 const { guardianKey, nytKey } = require('../../config');
-
 const {
 	guardian,
 	nyt,
@@ -15,7 +14,9 @@ const index = async (query, user) => {
 	let results = [];
 	results = results.concat(await guardian(query, guardianKey));
 	results = results.concat(await nyt(query, nytKey));
-	return results;
+	const firstArticle = (parseInt(query.page, 10) - 1) * parseInt(query.limit, 10);
+	const lastArticle = firstArticle + parseInt(query.limit, 10);
+	return results.slice(firstArticle, lastArticle);
 };
 
 module.exports = index;

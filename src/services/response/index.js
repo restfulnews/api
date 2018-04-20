@@ -20,9 +20,19 @@ exports.authorOrAdmin = (res, user, userField) => (entity) => {
 	return res.status(401).end();
 };
 
-exports.responseWrapper = (data, status = 200) => ({
-	status,
-	version,
-	maintainer,
-	data,
-});
+exports.responseWrapper = (data, warnings, startTime, parameters, status = 200) => {
+	const endTime = new Date();
+	const elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
+	return ({
+		status,
+		version,
+		maintainer,
+		startTime,
+		endTime,
+		elapsedTime,
+		parameters,
+		warnings,
+		data,
+	});
+};
+
