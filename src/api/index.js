@@ -1,7 +1,7 @@
 const { Router, static } = require('express');
 const path = require("path");
 const user = require('./user');
-// const company = require('./company');
+const company = require('./company');
 const auth = require('./auth');
 const config = require('../config');
 const debug = require('./debug');
@@ -35,7 +35,7 @@ const router = new Router();
  * @apiParam {String[]} [fields] Fields to be returned.
  */
 router.use('/users', user);
-// router.use('/company', company);
+router.use('/company', company);
 router.use('/auth', auth);
 router.use('/search', search);
 router.use('/news', news);
