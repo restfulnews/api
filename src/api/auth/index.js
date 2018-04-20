@@ -6,14 +6,6 @@ const {
 
 const router = new Router();
 
-
-router.post(
-	'/',
-	sendResetLinkIfRequired,
-	json(),
-	login,
-);
-
 /**
  * @api {post} /auth/basic Basic Authentication
  * @apiName Authenticate
@@ -43,6 +35,13 @@ router.post(
  *  }
  * }
  */
+router.post(
+	'/',
+	sendResetLinkIfRequired,
+	json(),
+	login,
+);
+
 router.post(
 	'/basic',
 	basic(),

@@ -38,6 +38,7 @@ const baseConfig = {
 	slackNotifications: !!Number(process.env.SLACK_NOTIFICATIONS),
 	sendgridKey: requireProcessEnv('SENDGRID_KEY'),
 	guardianKey: requireProcessEnv('GUARDIAN_KEY'),
+	nytKey: requireProcessEnv('NYT_KEY'),
 	masterKey: requireProcessEnv('MASTER_KEY'),
 	jwtSecret: requireProcessEnv('JWT_SECRET'),
 	googleClientId: requireProcessEnv('GOOGLE_CLIENT_ID'),
