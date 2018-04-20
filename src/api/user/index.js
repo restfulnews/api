@@ -23,6 +23,7 @@ const {
  * @api {get} /users Retrieve users
  * @apiName RetrieveUsers
  * @apiGroup User
+ * @apiDescription Gets a list of all users.
  * @apiPermission admin
  * @apiHeader {String} Bearer User access_token.
  * @apiUse listParams
@@ -61,6 +62,7 @@ router.get(
  * @api {post} /email/:email Test if user exists
  * @apiName FindUserByEmailPublic
  * @apiGroup User
+ * @apiDescription Checks if a user exists with the specified email.
  * @apiPermission public
  * @apiSuccess {Object} exists: true
  * @apiExample {curl} Curl Usage:
@@ -78,6 +80,7 @@ router.post(
  * @api {get} /users/me Retrieve current user
  * @apiName RetrieveCurrentUser
  * @apiGroup User
+ * @apiDescription Gets the current user who is logged in.
  * @apiPermission user
  * @apiHeader {String} Bearer User access_token.
  * @apiSuccess {Object} user User's data.
@@ -109,6 +112,7 @@ router.get(
  * @api {get} /users/:id Retrieve user
  * @apiName RetrieveUser
  * @apiGroup User
+ * @apiDescription Retrieves a user's data when given the User ID.
  * @apiPermission public
  * @apiSuccess {Object} user User's data.
  * @apiError 404 User not found.
@@ -136,11 +140,12 @@ router.get(
  * @api {post} /users Create user
  * @apiName CreateUser
  * @apiGroup User
+ * @apiDescription Creates a user with the information provided in the parameters.
  * @apiParam {String} email User's email.
  * @apiParam {String{6..}} password User's password.
  * @apiParam {String} name User's name.
  * @apiParam {String} [picture] User's picture.
- * @apiParam {String=user,admin} [role=user] User's picture.
+ * @apiParam {String=user,admin} [role=user] User's role.
  * @apiSuccess (Sucess 201) {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 409 Email already registered.
@@ -192,6 +197,7 @@ router.put(
  * @api {put} /users/:id Update user
  * @apiName UpdateUser
  * @apiGroup User
+ * @apiDescription Updates an existing User's information based on the parameters entered.
  * @apiPermission user
  * @apiHeader {String} Bearer User access_token.
  * @apiParam {String} [name] User's name.
@@ -229,6 +235,7 @@ router.put(
  * @api {put} /users/:id/password Update password
  * @apiName UpdatePassword
  * @apiGroup User
+ * @apiDescription Updates an existing User's password.
  * @apiHeader {String} Authorization Basic authorization with email and password.
  * @apiParam {String{6..}} password User's new password.
  * @apiSuccess (Success 201) {Object} user User's data.
@@ -265,6 +272,7 @@ router.put(
  * @api {delete} /users/:id Delete user
  * @apiName DeleteUser
  * @apiGroup User
+  * @apiDescription Deletes an existing user with the specified User ID.
  * @apiPermission admin
  * @apiHeader {String} Bearer User access_token.
  * @apiSuccess (Success 204) 204 No Content.
@@ -286,6 +294,7 @@ router.delete(
  * @api {get} /users/reset-code Send email
  * @apiName SendPasswordReset
  * @apiGroup User
+ * @apiDescription Sends a password reset code to the specified E-mail address.
  * @apiParam {Object} email Email address to receive the password reset token.
  * @apiSuccess (Success 202) 202 Accepted.
  * @apiError {Object} 400 Some parameters may contain invalid values.

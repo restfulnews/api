@@ -21,6 +21,13 @@ const router = new Router();
  * @api {post} /news Create News
  * @apiName CreateNews
  * @apiGroup News
+ * @apiDescription Creates a News object.
+ * @apiParam {String} title Title of the news article.
+ * @apiParam {String} abstract Abstract of the news article.
+ * @apiParam {String} [url] URL to the news article.
+ * @apiParam {String} [source] URL Source to the news article.
+ * @apiParam {String} [thumbnail] URL Source to the news article thumbnail.
+ * @apiParam {Date.toISOString} [publishedAt] Pulished date of the news article. (format: YYYY-MM-DDTHH:mm:ss.sssZ)
  * @apiPerNews admin
  * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} News News's data.
@@ -57,6 +64,7 @@ router.post(
  * @api {get} /news Retrieve news
  * @apiName RetrieveNews
  * @apiGroup News
+ * @apiDescription Retrieves a list of News objects.
  * @apiPerNews admin
  * @apiHeader {String} Bearer admin access token.
  * @apiUse listParams
@@ -94,6 +102,7 @@ router.get(
  * @api {get} /news/:id Retrieve News
  * @apiName RetrieveNews
  * @apiGroup News
+ * @apiDescription Retrieves a News object based on the news article ID entered.
  * @apiPerNews user
  * @apiParam {String} BearerToken user access token.
  * @apiSuccess {Object} News News's data.
@@ -127,6 +136,12 @@ router.get(
  * @api {put} /news/:id Update News
  * @apiName UpdateNews
  * @apiGroup News
+ * @apiDescription Updates an existing News object with new information.
+ * @apiParam {String} title Title of the news article.
+ * @apiParam {String} abstract Abstract of the news article.
+ * @apiParam {String} [url] URL to the news article.
+ * @apiParam {String} [source] URL Source to the news article.
+ * @apiParam {String} [thumbnail] URL Source to the news article thumbnail.
  * @apiPerNews user
  * @apiHeader {String} Bearer user access token.
  * @apiSuccess {Object} News News's data.
@@ -165,6 +180,7 @@ router.put(
  * @api {delete} /news/:id Delete News
  * @apiName DeleteNews
  * @apiGroup News
+ * @apiDescription Deletes an existing News object.
  * @apiPerNews admin
  * @apiHeader {String} Bearer admin access token.
  * @apiSuccess (Success 204) 204 No Content.
