@@ -46,13 +46,8 @@ exports.create = asyncHandler(async (req, res, next) => {
 		password: body.password,
 	})
 		.catch((err) => {
-<<<<<<< HEAD
-			if (err.name === 'MongoError' && err.code === 11000) {
-				errors.add('auth.alreadyExists', 'email', 'This email already exists, please use the auth routes to recover the token.');
-=======
 			if (err.code === 11000) {
 				errors.add('auth.alreadyExists', 'email');
->>>>>>> 3ec0ebb458999adc5c271454ffcb60b0f1dd1c94
 				throw new APIError(409, errors);
 			}
 			throw new APIError(500, 'Error creating user', err);
