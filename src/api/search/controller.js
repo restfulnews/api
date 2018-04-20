@@ -1,5 +1,6 @@
 const { asyncHandler, removeEmptyParams } = require('../../utils');
 const Searcher = require('../../services/searcher');
+const yahoo = require('../../services/sourcer');
 const { responseWrapper } = require('../../services/response');
 
 /**
@@ -29,6 +30,8 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	if (!cleanQuery.companyids) warnings.push('Company id\'s not specified.');
 	if (!cleanQuery.page || cleanQuery.page <= 0) cleanQuery.page = 1;
 	try {
+		//const companyids = await yahoo();
+		//console.log(companyids);
 		results = await Searcher(cleanQuery, user);
 	} catch (err) {
 		warnings.push(err);
