@@ -1,9 +1,9 @@
-# [Changelog](http://keepachangelog.com/)
-All releases will be documented in this file.
+# API Changelog
 
 ## [0.5.3] 2018-04-17 Error handling improvements & Changelog restructure.
 - [Improved] API errors by including warning for search route (displays unset parameters).
-- 
+- [Added] Advanced logging feature, where we save error messages in production mode.
+- [Fixed] Authentication create user, invalid login error. Token now returned on user sign in.
 
 ## [0.4.1] 2018-04-17 NYT Integration & Documentation Improvement
 - [Added] New York Times as an additional news source.
@@ -12,10 +12,10 @@ All releases will be documented in this file.
 
 ## [0.3.1] 2018-03-28 API Restructure
 - [Removed] Company route, because it didn't address any core features.
-- [Added] Time attribute to search route: 
-- [Improved] Search results organisation service
+- [Added] Time attribute to search route.
+- [Improved] Search results organisation service.
 - [Improved] Authentication, but checking if the current user has read permissions for certain routes.
-- [Improved] Documentation: Added 
+- [Improved] Documentation, by adding extra search parameters to docs (ie. start & end time, topics & keywords).
 
 ## [0.2.1] 2018-03-26 Adding Documentation Skeleton
 - [Improved] Search service, by enabling dynamic source integration.
@@ -29,20 +29,4 @@ All releases will be documented in this file.
 ## [0.1.0] 2018-03-13 Initial build
 - [Added] YO generated template boilerplate, created a basic boilerplate, containing the api routes and services.
 - [Added] Utils, set up a utils modules for helper functions etc.
-- [Security] 
-
-# Format:
-## [sem-ver] [Production release date: (yyyy-mm-dd)] [Title (optional)]
-- [Added] ...
-- [Changed] ...
-- [Removed] ...
-- [Fixed] ...
-- [Security] ...
-
-# [Semantic versioning](http://semver.org/)
-Given a version number MAJOR.MINOR.PATCH, increment the:
-- MAJOR version when you make incompatible API changes,
-- MINOR version when you add functionality in a backwards-compatible manner, and
-- PATCH version when you make backwards-compatible bug fixes.
-
-Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+- [Security] enabled when creating users. Users can't change their role to admin (only admins can update the user role).
