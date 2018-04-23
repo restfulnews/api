@@ -10,7 +10,7 @@ open my $fh, "<", $newsTopicsFile or die "Could not open input file $newsTopicsF
 open my $output, ">", "testResults.txt" or die "Could not open results file testResults.txt\n";
 print $output "Timing data for News Searching\n";
 close $output;
-my $output = "testResults.txt";
+my $searchOutput = "searchTiming.txt";
 
 #Authorise user and get token
 my $token = `curl --request POST --url http://api.restfulnews.com/auth --header 'content-type: application/json' --data '{ "email": "steven\@restfulnews.com", "password": "accident8" }'`;
@@ -34,17 +34,17 @@ foreach my $line (<$fh>) {
             chomp $fullurl;
             $fullurl =~ s/[^\w&\:\/\.\?\=]//;
             $fullurl = lc $fullurl;
-            `/usr/bin/time --append --output=$output curl --request GET --url '$fullurl' --header 'authorization: Bearer $token' --header 'content-type: application/json'`;
+            `/usr/bin/time --append --output=$searchOutput curl --request GET --url '$fullurl' --header 'authorization: Bearer $token' --header 'content-type: application/json'`;
         }
     }
 }
 close $fh;
-close $output;
+close $searchOutput;
 
 # Collate timing results
-open my $results, "<", "testResults.txt" or die "Failed to open results file\n";
+open my $results, "<", "searchTimings.txt" or die "Failed to open results file\n";
 my $totalSecs = 0;
-my $numTopics = 0;
+my $numSearches = 0;
 foreach my $line (<$results>) {
     if ($line =~ /user.*system.*elapsed/) {
         $line =~ s/^.*(\d+:\d+\.\d+)elapsed.*$/$1/;
@@ -55,13 +55,17 @@ foreach my $line (<$results>) {
         $sec =~ s/^.*:(\d+.\d+).*$/$1/;
         $sec = $sec + 0;
         $totalSecs += $min + $sec;
-        $numTopics += 1;
+        $numSearches += 1;
     }
 }
+close $results;
 
-die "===\nMassive error: No timing data reported\n===\n" if $numTopics == 0;
+die "===\nMassive error: No timing data reported\n===\n" if $numSearches == 0;
 
-printf ("Average Search time:\n%.2f seconds\n", $totalSecs/$numTopics);
+`echo "" > timingResults.txt`;
+open my $finalResults, ">>", "timingResults.txt" or die "Could not open final results file\n";
+printf $finalResults "Average Search time:\n%.2f seconds, $numSearches test cases\n", $totalSecs/$numSearches, $numSearches;
+close $finalResults;
 
 `rm GLOB* testResults.txt`;
 print "All cleaned up!\n";
