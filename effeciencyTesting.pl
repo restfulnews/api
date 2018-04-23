@@ -63,5 +63,5 @@ die "===\nMassive error: No timing data reported\n===\n" if $numTopics == 0;
 
 printf ("Average Search time:\n%.2f seconds\n", $totalSecs/$numTopics);
 
-#`rm testResults.txt`;
-#print "All cleaned up!\n";
+`rm GLOB* testResults.txt`;
+print "All cleaned up!\n";
