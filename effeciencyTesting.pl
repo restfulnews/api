@@ -8,31 +8,34 @@ die "Usage: \n$0 [NewsKeywordFile.txt]\n" if @ARGV < 1;
 my $newsTopicsFile = $ARGV[0];
 open my $fh, "<", $newsTopicsFile or die "Could not open input file $newsTopicsFile\n";
 open my $output, ">", "testResults.txt" or die "Could not open results file testResults.txt\n";
-print $output "";
+print $output "Timing data for News Searching\n";
 close $output;
+my $output = "testResults.txt";
 
 #Authorise user and get token
 my $token = `curl --request POST --url http://api.restfulnews.com/auth --header 'content-type: application/json' --data '{ "email": "steven\@restfulnews.com", "password": "accident8" }'`;
 $token =~ s/^.+token\":\"(.*?)\".*$/$1/;
-print "token: [$token]\n";
 die "Invalid token\n" if $token =~ /[\[\{\]\}]\"/;
-
-# repoen the output file so that printing to it will append to file
-open my $output, ">>", "testResults.txt" or die "Could not open results file testResults.txt\n";
-print $output "Timing data for News Searching\n";
 
 # Search for every word in the input file as a separate topic
 foreach my $line (<$fh>) {
     my @words = split(/[ ,\.\/]/, $line);
-    foreach my $word (@words) {
-        chomp $word;
-        print $output "\nTopic: $word\n";
+    foreach my $topic (@words) {
+        chomp $topic;
         my $url = "http://api.restfulnews.com/search?topics=";
-        $url .= $word;
-        $url .= "&start_date=2011-02-22T23:39:03.000Z&end_date=2018-02-22T23:39:03.000Z";
-        $url =~s/\r//;
-        my $timing = `time curl --request GET --url '$url' --header 'authorization: Bearer $token' --header 'content-type: application/json'`;
-        print $output "$timing\n";
+        $url .= $topic;
+        open my $companies, "<", "companies.txt" or die "Couldn't open Companies.txt\n";
+        foreach my $company (<$companies>) {
+            $company =~s/\r//;
+            chomp $company;
+            my $fullurl = $url;
+            $fullurl .= "&companyids=$company";
+            $fullurl =~s/\r//;
+            chomp $fullurl;
+            $fullurl =~ s/[^\w&\:\/\.\?\=]//;
+            $fullurl = lc $fullurl;
+            `/usr/bin/time --append --output=$output curl --request GET --url '$fullurl' --header 'authorization: Bearer $token' --header 'content-type: application/json'`;
+        }
     }
 }
 close $fh;
@@ -43,20 +46,22 @@ open my $results, "<", "testResults.txt" or die "Failed to open results file\n";
 my $totalSecs = 0;
 my $numTopics = 0;
 foreach my $line (<$results>) {
-    if ($line =~ /real/) {
-        $line =~ s/^.*real\s(\d+m\d+\.\d+s).*$/$1/;
+    if ($line =~ /user.*system.*elapsed/) {
+        $line =~ s/^.*(\d+:\d+\.\d+)elapsed.*$/$1/;
         my $min = $line;
-        $min =~ s/(\d+)m.+$/$1/;
+        $min =~ s/(\d+):.+$/$1/;
         $min = $min * 60;
         my $sec = $line;
-        $sec =~ s/^.+m(\d+.\d+).*$/$1/;
+        $sec =~ s/^.*:(\d+.\d+).*$/$1/;
         $sec = $sec + 0;
         $totalSecs += $min + $sec;
         $numTopics += 1;
     }
 }
 
-printf ("Average Search time:\n%.4f seconds\n", $totalSecs/$numTopics);
+die "===\nMassive error: No timing data reported\n===\n" if $numTopics == 0;
 
-`rm testResults.txt`;
-print "All cleaned up!\n";
+printf ("Average Search time:\n%.2f seconds\n", $totalSecs/$numTopics);
+
+#`rm testResults.txt`;
+#print "All cleaned up!\n";
