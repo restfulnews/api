@@ -2,25 +2,26 @@
 use warnings;
 use strict;
 
-# NOTE: Not working yet. Still under development by @lachjones
-
 die "Usage: \n$0 [NewsKeywordFile.txt]\n" if @ARGV < 1;
 
+# Open input file, clear/create output file
 my $newsTopicsFile = $ARGV[0];
 open my $fh, "<", $newsTopicsFile or die "Could not open input file $newsTopicsFile\n";
 open my $output, ">", "testResults.txt" or die "Could not open results file testResults.txt\n";
 print $output "";
 close $output;
 
+#Authorise user and get token
 my $token = `curl --request POST --url http://api.restfulnews.com/auth --header 'content-type: application/json' --data '{ "email": "steven\@restfulnews.com", "password": "accident8" }'`;
 $token =~ s/^.+token\":\"(.*?)\".*$/$1/;
 print "token: [$token]\n";
 die "Invalid token\n" if $token =~ /[\[\{\]\}]\"/;
 
+# repoen the output file so that printing to it will append to file
 open my $output, ">>", "testResults.txt" or die "Could not open results file testResults.txt\n";
 print $output "Timing data for News Searching\n";
 
-
+# Search for every word in the input file as a separate topic
 foreach my $line (<$fh>) {
     my @words = split(/[ ,\.\/]/, $line);
     foreach my $word (@words) {
@@ -37,6 +38,7 @@ foreach my $line (<$fh>) {
 close $fh;
 close $output;
 
+# Collate timing results
 open my $results, "<", "testResults.txt" or die "Failed to open results file\n";
 my $totalSecs = 0;
 my $numTopics = 0;
