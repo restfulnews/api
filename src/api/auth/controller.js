@@ -6,6 +6,7 @@ const User = require('../user/model');
 
 exports.login = ({ user }, res) => {
 	const token = sign(user.id);
+	res.cookie('jwt', token);
 	success(res, 201)({ token, user: user.view(true) });
 };
 
