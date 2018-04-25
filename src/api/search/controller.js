@@ -31,9 +31,11 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	if (!cleanQuery.companyids) {
 		warnings.push('Company id\'s not specified.');
 	} else {
-		const comps = cleanQuery.companyids.split(',');
-		const newcomps = await getCompanies(comps);
-		cleanQuery.companyids = newcomps.join(',');
+		// TODO: Fix / rethink company integration
+		// Disable company integration for now
+		// const comps = cleanQuery.companyids.split(',');
+		// const newcomps = await getCompanies(comps);
+		// cleanQuery.companyids = newcomps.join(',');
 	}
 	try {
 		results = await Searcher(cleanQuery, user);
