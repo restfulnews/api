@@ -1,0 +1,13 @@
+
+Auth time:
+0.27 seconds, 136 test case
+Max Auth time:
+0.86 seconds
+Min Auth time:
+0.12 seconds
+Average Search time:
+2.41 seconds, 336 test cases
+Max Search time:
+4.89 seconds
+Min Search time:
+1.69 seconds
