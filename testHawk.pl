@@ -15,10 +15,11 @@ for (my $i = 0; $i < 100; $i++) {
         chomp $company;
         `/usr/bin/time --append --output=teamHawk.txt curl -X GET "http://seng.fmap.today/v1/news?start_date=2000-01-01&end_date=2018-01-25&companyids=VAH" >/dev/null 2>/dev/null`;
         $j++;
-        print " $j/400\n";
+        printf "\r    %3d/400", $j;
     }
     close $companies;
 }
+print "\n";
 
 # Collate timing results
 my $minSearchTime;
