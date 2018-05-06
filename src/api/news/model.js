@@ -9,6 +9,7 @@ const newsSchema = new mongoose.Schema({
 	fingerprint: String,
 	title: String, // article title
 	abstract: String, // article description
+	article: String, // full article
 	url: String, // web url to article
 	thumbnail: String, // url to article image
 	source: String, // news vendor (e.g. Guardian)
@@ -30,6 +31,7 @@ newsSchema.methods = {
 			...view,
 			source: this.source,
 			abstract: this.abstract,
+			article: this.article,
 			thumbnail: this.thumbnail,
 		} : view;
 	},
