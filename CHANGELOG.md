@@ -1,5 +1,11 @@
 # API Changelog
 
+## [0.6.0] 2018-05-06 Improved company integration
+- [Added] permid.org API service
+- [Improved] company integration service
+- [Added] Company and news article linker
+- [Improved] Async flows in searcher and sourcer modules
+
 ## [0.5.3] 2018-04-17 Error handling improvements & Changelog restructure.
 - [Improved] API errors by including warning for search route (displays unset parameters).
 - [Added] Advanced logging feature, where we save error messages in production mode.

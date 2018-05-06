@@ -16,7 +16,7 @@ const index = async ({
 		fq: companyids,
 		begin_date: fecha.format(new Date(start_date), 'YYYYMMDD'),
 		end_date: fecha.format(new Date(end_date), 'YYYYMMDD'),
-		fl: 'web_url, pub_date, snippet, headline, keywords, multimedia',
+		fl: 'web_url, pub_date, abstract, headline, keywords, multimedia',
 	};
 
 	await axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', { params })
@@ -28,7 +28,8 @@ const index = async ({
 				publishedAt: new Date(result.pub_date),
 				fingerprint: fingerprint(result.headline.main, 'nyt'),
 				url: result.web_url,
-				abstract: abstract(result.snippet),
+				abstract: abstract(result.abstract),
+				article: result.abstract,
 				thumbnail: result.multimedia[0] ? `https://www.nytimes.com/${result.multimedia[0].url}` : '',
 				source: 'nyt',
 			}));

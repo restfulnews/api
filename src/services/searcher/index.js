@@ -10,7 +10,7 @@ const {
  * - saves news objects without duplicate fingerprints into the db
  */
 
-const index = async (query, user) => {
+const index = async (query, companies, user) => {
 	let results = [];
 	results = results.concat(await guardian(query, guardianKey));
 	results = results.concat(await nyt(query, nytKey));

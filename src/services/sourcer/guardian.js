@@ -38,6 +38,7 @@ const index = async ({
 				fingerprint: fingerprint(result.webTitle, 'guardian'),
 				url: result.webUrl,
 				abstract: abstract(result.fields.body),
+				article: result.fields.body,
 				thumbnail: result.fields.thumbnail,
 				source: 'guardian',
 			}));

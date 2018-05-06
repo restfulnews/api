@@ -1,13 +1,31 @@
 const { asyncHandler, removeEmptyParams } = require('../../utils');
-const Searcher = require('../../services/searcher');
 const { responseWrapper } = require('../../services/response');
-const { getCompanies } = require('../../services/company');
+const searcher = require('../../services/searcher');
+const company = require('../../services/company');
 
-/**
-* CUSTOM FUNCTIONS
-*/
+async function linkNewsWithCompanies(news, companies) {
+	let results = news;
+	await results.forEach((result) => {
+		companies.forEach((_company) => {
+			if (result.article.toLowerCase().indexOf(_company.shortName) >= 0) {
+				if (!result.companies) {
+					result.companies = [_company];
+				} else {
+					result.companies.push(_company);
+				}
+			}
+		});
+	});
+	await results.forEach((result) => {
+		if (result.article) delete result.article;
+	});
+	return results;
+}
 
 exports.search = asyncHandler(async ({ query, user }, res) => {
+	let news = [];
+	let companies = [];
+	let companyIds = [];
 	let results = [];
 	const warnings = [];
 	const startTime = new Date();
@@ -29,18 +47,13 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	if (!cleanQuery.topics) warnings.push('Topics not specified.');
 	if (!cleanQuery.page || cleanQuery.page <= 0) cleanQuery.page = 1;
 	if (!cleanQuery.companyids) {
-		warnings.push('Company id\'s not specified.');
+		warnings.push('Company Ids not specified.');
 	} else {
-		// TODO: Fix / rethink company integration
-		// Disable company integration for now
-		// const comps = cleanQuery.companyids.split(',');
-		// const newcomps = await getCompanies(comps);
-		// cleanQuery.companyids = newcomps.join(',');
+		companyIds = await cleanQuery.companyids.split(',');
+		companies = await company(companyIds, user);
+		cleanQuery.companyids = companies.map(c => c.shortName).toString();
 	}
-	try {
-		results = await Searcher(cleanQuery, user);
-	} catch (err) {
-		warnings.push(err);
-	}
+	news = await searcher(cleanQuery, user);
+	results = await linkNewsWithCompanies(news, companies);
 	res.json(responseWrapper(results, warnings, startTime, cleanQuery));
 }, 'Unable to retrieve news articles.');
