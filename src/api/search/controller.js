@@ -15,8 +15,6 @@ async function linkNewsWithCompanies(news, companies) {
 				}
 			}
 		});
-	});
-	await results.forEach((result) => {
 		if (result.article) delete result.article;
 	});
 	return results;
@@ -55,5 +53,5 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	}
 	news = await searcher(cleanQuery, user);
 	results = await linkNewsWithCompanies(news, companies);
-	res.json(responseWrapper(results, warnings, startTime, cleanQuery));
+	res.json(responseWrapper(companies, results, warnings, startTime, cleanQuery));
 }, 'Unable to retrieve news articles.');

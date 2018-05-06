@@ -20,7 +20,7 @@ exports.authorOrAdmin = (res, user, userField) => (entity) => {
 	return res.status(401).end();
 };
 
-exports.responseWrapper = (data, warnings, startTime, parameters, status = 200) => {
+exports.responseWrapper = (companies, data, warnings, startTime, parameters, status = 200) => {
 	const endTime = new Date();
 	const elapsedTime = (endTime.getTime() - startTime.getTime()) / 1000;
 	return ({
@@ -32,6 +32,7 @@ exports.responseWrapper = (data, warnings, startTime, parameters, status = 200) 
 		elapsedTime,
 		parameters,
 		warnings,
+		companies,
 		data,
 	});
 };
