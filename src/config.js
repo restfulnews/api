@@ -39,6 +39,7 @@ const baseConfig = {
 	sendgridKey: requireProcessEnv('SENDGRID_KEY'),
 	guardianKey: requireProcessEnv('GUARDIAN_KEY'),
 	nytKey: requireProcessEnv('NYT_KEY'),
+	ftKey: requireProcessEnv('FT_KEY'),
 	permidKey: requireProcessEnv('PERMID_KEY'),
 	masterKey: requireProcessEnv('MASTER_KEY'),
 	jwtSecret: requireProcessEnv('JWT_SECRET'),

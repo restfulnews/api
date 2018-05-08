@@ -49,7 +49,7 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 	} else {
 		companyIds = await cleanQuery.companyids.split(',');
 		companies = await company(companyIds, user);
-		cleanQuery.companyids = companies.map(c => c.shortName).toString();
+		cleanQuery.companyids = await companies.map(c => c.shortName).toString();
 	}
 	news = await searcher(cleanQuery, user);
 	results = await linkNewsWithCompanies(news, companies);

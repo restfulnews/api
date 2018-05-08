@@ -12,4 +12,14 @@ const fingerprint = (title, source) => {
 	return hash;
 };
 
-module.exports = { abstract, fingerprint };
+const extract = (metadata, text) => {
+	const companies = [text];
+	if (metadata) {
+		metadata.forEach((obj) => {
+			companies.push(obj.term.name);
+		});
+	}
+	return companies.join(' ');
+};
+
+module.exports = { abstract, extract, fingerprint };
