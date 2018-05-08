@@ -42,14 +42,18 @@ exports.search = asyncHandler(async ({ query, user }, res) => {
 		warnings.push('Limit not set, defaulting to limit to 50 articles.');
 	}
 	if (cleanQuery.end_date < cleanQuery.start_date) warnings.push('End date cannot be before start date.');
-	if (!cleanQuery.topics) warnings.push('Topics not specified.');
+	if (!cleanQuery.topics) {
+		warnings.push('Topics not specified.');
+	} else {
+		cleanQuery.topics = cleanQuery.topics.replace(/,/g, ' ');
+	}
 	if (!cleanQuery.page || cleanQuery.page <= 0) cleanQuery.page = 1;
 	if (!cleanQuery.companyids) {
 		warnings.push('Company Ids not specified.');
 	} else {
 		companyIds = await cleanQuery.companyids.split(',');
 		companies = await company(companyIds, user);
-		cleanQuery.companyids = await companies.map(c => c.shortName).toString();
+		cleanQuery.companyids = await companies.map(c => c.shortName).join(' ');
 	}
 	news = await searcher(cleanQuery, user);
 	results = await linkNewsWithCompanies(news, companies);

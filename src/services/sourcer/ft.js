@@ -11,11 +11,20 @@ const index = async ({
 	let allResults = [];
 	const beginDate = fecha.format(new Date(start_date), 'YYYY-MM-DD[T]HH:mm:ss[Z]');
 	const finishDate = fecha.format(new Date(end_date), 'YYYY-MM-DD[T]HH:mm:ss[Z]');
+	const topicParams = topics ? topics.split(',').map(x => x.replace(/(.+)/, '"$1"')).join(' | ') : '';
+	const companyParams = companyids ? companyids.replace(/ /g, ' | ') : '';
+	let queryParams = '';
+	if (topicParams === '' || companyParams === '') {
+		queryParams = `(${topicParams}${companyParams})`;
+	} else {
+		queryParams = `(${topicParams}) + (${companyParams})`;
+	}
 	const data = {
-		queryString: `${topics} lastPublishDateTime:>${beginDate} lastPublishDateTime:<${finishDate}`,
+		queryString: `${queryParams} lastPublishDateTime:>${beginDate} lastPublishDateTime:<${finishDate}`,
 		queryContext: { curations: ['ARTICLES'] },
 		resultContext: { maxResults: 50, aspects: ['title', 'lifecycle', 'summary', 'location', 'editorial', 'images', 'metadata'] },
 	};
+	console.log(data)
 	const options = {
 		method: 'POST',
 		url: `http://api.ft.com/content/search/v1?apiKey=${apiKey}`,
@@ -27,6 +36,7 @@ const index = async ({
 	await axios(options)
 		.then(async (response) => {
 			const results = response.data.results[0].results;
+			//console.log(results)
 			if (!results) return [];
 			allResults = await results.map(result => ({
 				title: result.title.title,
