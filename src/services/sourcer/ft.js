@@ -24,7 +24,6 @@ const index = async ({
 		queryContext: { curations: ['ARTICLES'] },
 		resultContext: { maxResults: 50, aspects: ['title', 'lifecycle', 'summary', 'location', 'editorial', 'images', 'metadata'] },
 	};
-	console.log(data)
 	const options = {
 		method: 'POST',
 		url: `http://api.ft.com/content/search/v1?apiKey=${apiKey}`,
@@ -35,8 +34,7 @@ const index = async ({
 	};
 	await axios(options)
 		.then(async (response) => {
-			const results = response.data.results[0].results;
-			//console.log(results)
+			const { results } = response.data.results[0];
 			if (!results) return [];
 			allResults = await results.map(result => ({
 				title: result.title.title,
