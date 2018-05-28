@@ -1,6 +1,7 @@
 const md5 = require('md5');
 
 const abstract = (text) => {
+	if (text === undefined) return '';
 	const size = 256;
 	let summary = text.replace(/<(?:.|\n)*?>/gm, '');
 	if (summary.length > size) summary = `${summary.substring(0, size)} ...`;
